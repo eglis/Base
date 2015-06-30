@@ -1,0 +1,34 @@
+{
+  "name": "shineisp/shineisp-base",
+  "description": "Admin module for ShineISP project",
+  "license": "BSD-2-Clause",
+  "type": "library",
+  "minimum-stability": "dev",
+  "keywords": [
+    "zf2",
+    "shineisp"
+  ],
+  "homepage": "http://github.com/shineisp/ShineISPAdmin",
+  "authors": [
+    {
+      "name": "Michelangelo Turillo",
+      "email": "info@shineisp.com",
+      "homepage": "http://shineisp.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "zendframework/zendframework": "2.3.*",
+    "shineisp/shineisp-core": "dev-master"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-0": {
+      "Base": "src/"
+    },
+    "classmap": [
+      "./Module.php"
+    ]
+  }
+}
