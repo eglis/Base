@@ -22,12 +22,14 @@ class HeadMeta extends ZendHeadMeta {
      * @see \Zend\View\Helper\HeadMeta::append()
      */
     public function append($value) {
-        if ($value->name == 'description') {
-            $this->updateDescription($value, AbstractContainer::APPEND);
-        } else if ($value->name == 'keywords') {
-            $this->updateKeywords($value, AbstractContainer::APPEND);
-        } else {
-            parent::append($value);
+        if(!empty($value)){
+            if ($value->name == 'description') {
+                $this->updateDescription($value, AbstractContainer::APPEND);
+            } else if ($value->name == 'keywords') {
+                $this->updateKeywords($value, AbstractContainer::APPEND);
+            } else {
+                parent::append($value);
+            }
         }
     }
 
