@@ -1,21 +1,21 @@
 <?php
 namespace Base\Form\Element;
 
-use Base\Service\LanguagesService;
+use Base\Service\RegionService;
 use Zend\Form\Element\Select;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\I18n\Translator\Translator;
 
-class Languages extends Select implements ServiceLocatorAwareInterface
+class Region extends Select implements ServiceLocatorAwareInterface
 {
     protected $serviceLocator;
     protected $translator;
-    protected $languagesService;
+    protected $regionService;
     
-    public function __construct(LanguagesService $languagesService, \Zend\Mvc\I18n\Translator $translator){
+    public function __construct(RegionService $regionService, \Zend\Mvc\I18n\Translator $translator){
         parent::__construct();
-        $this->languagesService = $languagesService;
+        $this->regionService = $regionService;
         $this->translator = $translator;
     }
     
@@ -23,12 +23,13 @@ class Languages extends Select implements ServiceLocatorAwareInterface
     {
         $data = array();
         
-        $pages = $this->languagesService->findAll();
+        $records = $this->regionService->findAll();
         
-        foreach ($pages as $page){
-            $data[$page->getId()] = $page->getLanguage();
+        foreach ($records as $record){
+            $data[$record->getId()] = $record->getName();
         }
         asort($data);
+        $this->setEmptyOption($this->translator->translate('Please select a region ...'));
         $this->setValueOptions($data);
     }
     

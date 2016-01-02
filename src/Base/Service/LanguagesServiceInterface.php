@@ -53,6 +53,13 @@ interface LanguagesServiceInterface
     public function findAll();
 
     /**
+     * Should return all active records
+     *
+     * @return array|\Traversable
+     */
+    public function findActive();
+
+    /**
      * Should return a single record
      *
      * @param  int $id Identifier of the Record that should be returned

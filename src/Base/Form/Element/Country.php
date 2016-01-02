@@ -23,13 +23,13 @@ class Country extends Select implements ServiceLocatorAwareInterface
     {
         $data = array();
         
-        $records = $this->countryService->findAll();
+        $records = $this->countryService->findVisible();
         
         foreach ($records as $record){
             $data[$record->getId()] = $record->getName();
         }
         asort($data);
-        $this->setEmptyOption($this->translator->translate('Please select a country ...'));
+        $this->setEmptyOption($this->translator->translate('All countries ...'));
         $this->setValueOptions($data);
     }
     

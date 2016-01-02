@@ -72,12 +72,11 @@ class Module
     {
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
+        $request = $e->getApplication()->getServiceManager()->get('Request');
         $moduleRouteListener->attach($eventManager);
         $adapter = $e->getApplication()->getServiceManager()->get('Zend\Db\Adapter\Adapter');
-        $sm = $e->getApplication()->getServiceManager();
         $config = $e->getApplication()->getServiceManager()->get('Configuration');
-        $settings = $e->getApplication()->getServiceManager()->get('SettingsService');
-        
+        $locale = null;
         $eventManager->attach(new UserRegisterListener($adapter));
         $eventManager->attach(new LogListener());
         
@@ -94,26 +93,46 @@ class Module
         $sessionManager = new SessionManager($sessionConfig);
         $sessionManager->start();
         $session = new Container('base');
-        
+
         // Get the visitor language selection
         $translator = $e->getApplication()->getServiceManager()->get('translator');
-        
-        $locale = $session->offsetGet('locale'); // Get the locale
-        if(empty($locale)){
-            $locale = \Locale::getPrimaryLanguage(\Locale::getDefault()); // Get the locale
+
+        // get the locale from the cookie
+        $headCookie = $request->getHeaders()->get('Cookie');
+        if(!empty($headCookie) && array_key_exists('locale', get_object_vars($headCookie))){
+            $locale = $headCookie->locale;
         }
-        
-        if (! empty($locale) && 2 == strlen($locale)) {
-            $locale .= "_" . strtoupper($locale); 
+
+        if(empty($locale)) { // if there is not set any cookie
+            $locale = $session->offsetGet('locale'); // Get the locale from the session
+            if (empty($locale)) { // if there is not any session set yet
+                $headers = $request->getHeaders();
+
+                if ($headers->has('Accept-Language')) {
+                    $locales = $headers->get('Accept-Language')->getPrioritized();
+                    $first   = array_shift($locales);
+                    $locale = $first->getLanguage();
+
+                    if (! empty($locale) && 2 == strlen($locale)) {
+						$locale .= "_" . strtoupper($locale);
+                    }
+                }
+                if (empty($locale)) { // if the browser has no locale set, we have to get the default INTL global locale setting
+                    $locale = \Locale::getPrimaryLanguage(\Locale::getDefault()); // Gets the default locale value from the INTL global 'default_locale'
+                }
+            }
+        }else{
+            #\Zend\Debug\debug::dump("Cookie set with locale: $locale");
         }
-        
-        $translator->setLocale($locale)->setFallbackLocale('en_US');
-        
-        $isCompress = $settings->getValueByParameter('Base', 'iscompressed');
-        if($isCompress){
-            $eventManager->getSharedManager()->attach('Zend\Mvc\Application', 'finish', array($this, 'compressHtml'), 1002);
-        }
-    }
+
+        $translator->setLocale(\Locale::acceptFromHttp($locale));
+
+        $translator->setLocale($locale)->setFallbackLocale('en_US');  
+        \Zend\Validator\AbstractValidator::setDefaultTranslator($translator);
+        \Zend\Validator\AbstractValidator::setDefaultTranslatorTextDomain();
+
+
+	}
     
     /**
      * found somewhere on stack overflow
@@ -260,14 +279,30 @@ class Module
     						$element = new \Base\Form\Element\Languages($languagesService, $translator);
     						return $element;
     					},
-    					'Base\Form\Element\Country' => function  ($sm)
-    					{
-    						$serviceLocator = $sm->getServiceLocator();
-    						$translator = $sm->getServiceLocator()->get('translator');
-    						$countryService = $serviceLocator->get('CountryService');
-    						$element = new \Base\Form\Element\Country($countryService, $translator);
-    						return $element;
-    					},
+					'Base\Form\Element\Country' => function  ($sm)
+					{
+						$serviceLocator = $sm->getServiceLocator();
+						$translator = $sm->getServiceLocator()->get('translator');
+						$service = $serviceLocator->get('CountryService');
+						$element = new \Base\Form\Element\Country($service, $translator);
+						return $element;
+					},
+					'Base\Form\Element\Region' => function  ($sm)
+					{
+						$serviceLocator = $sm->getServiceLocator();
+						$translator = $sm->getServiceLocator()->get('translator');
+						$service = $serviceLocator->get('RegionService');
+						$element = new \Base\Form\Element\Region($service, $translator);
+						return $element;
+					},
+					'Base\Form\Element\Province' => function  ($sm)
+					{
+						$serviceLocator = $sm->getServiceLocator();
+						$translator = $sm->getServiceLocator()->get('translator');
+						$service = $serviceLocator->get('ProvinceService');
+						$element = new \Base\Form\Element\Province($service, $translator);
+						return $element;
+					},
     					'Base\Form\Element\Yesno' => function  ($sm)
     					{
     						$translator = $sm->getServiceLocator()->get('translator');

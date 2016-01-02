@@ -50,6 +50,10 @@ interface LanguagesInterface
     public function setLanguage($language);
     public function getLocale();
     public function setLocale($locale);
+
+    public function getHreflang();
+
+    public function setHreflang($hreflang);
     public function getCode();
     public function setCode($code);
     public function getBase();

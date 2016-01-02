@@ -80,15 +80,40 @@ class CountryService implements CountryServiceInterface
 	/**
 	 * @inheritDoc
 	 */
+	public function findVisible($visible=true)
+	{
+		$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($visible){
+			$select->where(array('visible' => $visible));
+			$select->order(array('name ASC'));
+		});
+	
+		return $records;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function findByName($name)
 	{
 		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name){
-			$select->where(array('language' => $name));
+			$select->where(array('name' => $name));
 		});
-	
+
 		return $record->current();
 	}
-	
+
+	/**
+	 * @inheritDoc
+	 */
+	public function findByCode($name)
+	{
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name){
+			$select->where(array('code' => $name));
+		});
+
+		return $record->current();
+	}
+
 	/**
 	 * @inheritDoc
 	 */

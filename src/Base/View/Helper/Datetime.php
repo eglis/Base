@@ -27,14 +27,16 @@ class Datetime extends AbstractHelper implements ServiceLocatorAwareInterface {
 		return $this->serviceLocator;
 	}
 
-    public function __invoke($value, $format = 'Y-m-d H:i:s')
+    public function __invoke($value, $format = 'Y-m-d H:i:s', $dateType = \IntlDateFormatter::SHORT, $timeType = \IntlDateFormatter::NONE)
     {
         $translator = $this->getServiceLocator()->getServiceLocator()->get('translator');
         $locale = $translator->getTranslator()->getLocale();
-        
-        setlocale (LC_TIME, $locale);
-        
-        $date = new \DateTime($value);
-        return $date->format($format);
+
+		$formatter = new \IntlDateFormatter($locale, $dateType, $timeType, null, null, $format);
+
+		$date = new \DateTime($value);
+
+		return $formatter->format($date);
+
     }
 }

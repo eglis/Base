@@ -47,7 +47,8 @@ class Languages implements LanguagesInterface {
 
     public $id;
     public $language;
-    public $locale;
+	public $locale;
+	public $hreflang;
     public $code;
     public $base;
     public $active;
@@ -108,6 +109,24 @@ class Languages implements LanguagesInterface {
 	 */
 	public function setLocale($locale) {
 		$this->locale = $locale;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getHreflang()
+	{
+		return $this->hreflang;
+	}
+
+	/**
+	 * @param mixed $hreflang
+	 * @return Languages
+	 */
+	public function setHreflang($hreflang)
+	{
+		$this->hreflang = $hreflang;
+		return $this;
 	}
 
 	/**

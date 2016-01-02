@@ -32,11 +32,9 @@ class LanguageCodes extends AbstractHelper implements ServiceLocatorAwareInterfa
         $selLanguage = null;
         $serviceLocator = $this->getServiceLocator()->getServiceLocator();
         $languageService = $serviceLocator->get('LanguagesService');
-        $translator = $serviceLocator->get('translator');
-        
+
         // get the language codes
         $langList = $languageService->getCodes();
-        
         return $langList;
     }
 }

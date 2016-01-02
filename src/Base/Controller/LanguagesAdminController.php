@@ -127,34 +127,34 @@ class LanguagesAdminController extends AbstractActionController
     	$grid->addColumn($col);
     
     	$col = new Column\Select('base', 'l');
-    	$col->setType(new \ZfcDatagrid\Column\Type\String());
-    	$col->setLabel(_('Base'));
+    	$col->setType(new \ZfcDatagrid\Column\Type\PhpString());
+    	$col->setLabel(_('Default language'));
     	$col->setTranslationEnabled(true);
     	$col->setFilterSelectOptions(array (
     			'' => '-',
-    			'0' => 'No',
-    			'1' => 'Yes'
+				'0' => _('No'),
+				'1' => _('Yes'),
     	));
     	$col->setReplaceValues(array (
     			'' => '-',
-    			'0' => 'No',
-    			'1' => 'Yes'
+				'0' => _('No'),
+				'1' => _('Yes'),
     	));
     	$grid->addColumn($col);
     
     	$col = new Column\Select('active', 'l');
-    	$col->setType(new \ZfcDatagrid\Column\Type\String());
+    	$col->setType(new \ZfcDatagrid\Column\Type\PhpString());
     	$col->setLabel(_('Active'));
     	$col->setTranslationEnabled(true);
     	$col->setFilterSelectOptions(array (
     			'' => '-',
-    			'0' => 'No',
-    			'1' => 'Yes'
+				'0' => _('No'),
+				'1' => _('Yes'),
     	));
     	$col->setReplaceValues(array (
     			'' => '-',
-    			'0' => 'No',
-    			'1' => 'Yes'
+				'0' => _('No'),
+				'1' => _('Yes'),
     	));
     	$grid->addColumn($col);
     
@@ -162,13 +162,13 @@ class LanguagesAdminController extends AbstractActionController
     	$showaction = new Column\Action\Button();
     	$showaction->setAttribute('href', "/admin/languages/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'l')));
     	$showaction->setAttribute('class', 'btn btn-xs btn-success');
-    	$showaction->setLabel($this->translator->translate('edit'));
+		$showaction->setLabel($this->translator->translate('Edit'));
     
     	$delaction = new Column\Action\Button();
     	$delaction->setAttribute('href', '/admin/languages/delete/' . $delaction->getRowIdPlaceholder());
-    	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
+		$delaction->setAttribute('onclick', "return confirm('" . _('Are you sure?') . "')");
     	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
-    	$delaction->setLabel($this->translator->translate('delete'));
+		$delaction->setLabel($this->translator->translate('Delete'));
     
     	$col = new Column\Action();
     	$col->addAction($showaction);
@@ -223,7 +223,7 @@ class LanguagesAdminController extends AbstractActionController
     
     	return $this->redirect()->toRoute(NULL, array (
     			'controller' => 'languages',
-    			'action' => 'edit',
+				'action' => 'Edit',
     			'id' => $record->getId()
     	));
     }

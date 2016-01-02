@@ -46,24 +46,40 @@ class LanguagesForm extends Form
                         )
                 )
         ));
-        
-        $this->add(array ( 
-                'name' => 'locale', 
-                'attributes' => array ( 
-                        'type' => 'text', 
-                        'class' => 'form-control',
-                		'placeholder' => _('Add the locale eg. it_IT'),
-                ), 
-                'options' => array ( 
-                        'label' => _('Locale'),
-                ), 
-                'filters' => array ( 
-                        array ( 
-                                'name' => 'StringTrim'
-                        )
+
+        $this->add(array(
+            'name' => 'locale',
+            'attributes' => array(
+                'type' => 'text',
+                'class' => 'form-control',
+                'placeholder' => _('Add the locale eg. it_IT'),
+            ),
+            'options' => array(
+                'label' => 'Locale',
+            ),
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim'
                 )
+            )
         ));
-        
+
+        $this->add(array(
+            'name' => 'hreflang',
+            'attributes' => array(
+                'type' => 'text',
+                'class' => 'form-control'
+            ),
+            'options' => array(
+                'label' => 'Hreflang',
+            ),
+            'filters' => array(
+                array(
+                    'name' => 'StringTrim'
+                )
+            )
+        ));
+
         $this->add(array (
                 'type' => 'Zend\Form\Element\Select',
                 'name' => 'base',
@@ -71,7 +87,7 @@ class LanguagesForm extends Form
                         'class' => 'form-control'
                 ),
                 'options' => array (
-                        'label' => _('Base'),
+                        'label' => _('Default language'),
                         'value_options' => array (
                         		'1' => _('Yes, this is the main site language'),
                         		'0' => _('No, it is not'),

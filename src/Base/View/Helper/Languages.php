@@ -35,7 +35,7 @@ class Languages extends AbstractHelper implements ServiceLocatorAwareInterface
         $translator = $serviceLocator->get('translator');
         
         // get the language codes
-        $langList = $languageService->getCodes();
+        $langList = $languageService->getCodes(true);
         
         $locale = $translator->getTranslator()->getLocale();
         $selectedLanguage = $languageService->findByLocale($locale);

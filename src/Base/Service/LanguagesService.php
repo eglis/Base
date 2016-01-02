@@ -65,7 +65,21 @@ class LanguagesService implements LanguagesServiceInterface
 		$records = $this->tableGateway->select();
 		return $records;
 	}
-	
+
+
+    /**
+     * @inheritDoc
+     */
+    public function findActive($active=true)
+    {
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($active){
+            $select->where(array('active' => $active));
+            $select->order(array('language ASC'));
+        });
+
+        return $records;
+    }
+
 	/**
 	 * @inheritDoc
 	 */
@@ -106,14 +120,24 @@ class LanguagesService implements LanguagesServiceInterface
 	/**
 	 * @inheritDoc
 	 */
-	public function getCodes()
+	public function getCodes($onlyActive=false)
 	{
-		$languages = $this->findAll();
-        
+		$i = 0;
+
+		if($onlyActive) {
+            $languages = $this->findActive();
+        }else{
+            $languages = $this->findAll();
+        }
+
         // Translate the language title and sort the result
         foreach ($languages as $language){
             $titleTranslated = $this->translator->translate($language->getLanguage());
-            $langList[$language->getCode()] = $titleTranslated;
+			$langList[$i]['language'] = $titleTranslated;
+			$langList[$i]['code'] = $language->getCode();
+			$langList[$i]['locale'] = $language->getLocale();
+			$langList[$i]['hreflang'] = $language->getHreflang();
+			$i++;
         }
 
         // Sorting of the result

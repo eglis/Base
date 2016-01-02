@@ -84,6 +84,7 @@ class RegionService implements RegionServiceInterface
 	{
 		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name){
 			$select->where(array('language' => $name));
+			$select->order(array('name ASC'));
 		});
 	
 		return $record->current();
@@ -96,6 +97,7 @@ class RegionService implements RegionServiceInterface
 	{
 		$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($country_id){
 			$select->where(array('country_id' => $country_id));
+			$select->order(array('name ASC'));
 		});
 	
 		return $records;

@@ -22,15 +22,12 @@ class HeadMeta extends ZendHeadMeta {
      * @see \Zend\View\Helper\HeadMeta::append()
      */
     public function append($value) {
-
-        if(!empty($value->name)){
-            if ($value->name == 'description') {
-                $this->updateDescription($value, AbstractContainer::APPEND);
-            } else if ($value->name == 'keywords') {
-                $this->updateKeywords($value, AbstractContainer::APPEND);
-            } else {
-                parent::append($value);
-            }
+        if ($value->name == 'description') {
+            $this->updateDescription($value, AbstractContainer::APPEND);
+        } else if ($value->name == 'keywords') {
+            $this->updateKeywords($value, AbstractContainer::APPEND);
+        } else {
+            parent::append($value);
         }
     }
 
@@ -38,14 +35,12 @@ class HeadMeta extends ZendHeadMeta {
      * @see \Zend\View\Helper\HeadMeta::prepend()
      */
     public function prepend($value) {
-        if(!empty($value->name)) {
-            if ($value->name == 'description') {
-                $this->updateDescription($value, AbstractContainer::PREPEND);
-            } else if ($value->name == 'keywords') {
-                $this->updateKeywords($value, AbstractContainer::PREPEND);
-            } else {
-                parent::prepend($value);
-            }
+        if ($value->name == 'description') {
+            $this->updateDescription($value, AbstractContainer::PREPEND);
+        } else if ($value->name == 'keywords') {
+            $this->updateKeywords($value, AbstractContainer::PREPEND);
+        } else {
+            parent::prepend($value);
         }
     }
 
@@ -121,16 +116,16 @@ class HeadMeta extends ZendHeadMeta {
             }
             if ($this->isKeywords($item)) {
                 switch ($position) {
-                    case AbstractContainer::APPEND:
-                        $keywordsString = implode(', ', array($item->content, $value->content));
-                        break;
-                    case AbstractContainer::PREPEND:
-                        $keywordsString = implode(', ', array($value->content, $item->content));
-                        break;
-                    case AbstractContainer::SET:
-                    default:
-                        $keywordsString = $value->content;
-                        break;
+                        case AbstractContainer::APPEND:
+                            $keywordsString = implode(', ', array($item->content, $value->content));
+                            break;
+                        case AbstractContainer::PREPEND:
+                            $keywordsString = implode(', ', array($value->content, $item->content));
+                            break;
+                        case AbstractContainer::SET:
+                        default:
+                            $keywordsString = $value->content;
+                            break;
                 }
                 $item->content = $keywordsString;
                 $keywordsExists = true;
