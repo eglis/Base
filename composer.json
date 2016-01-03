@@ -1,6 +1,6 @@
 {
   "name": "shineisp/shineisp-base",
-  "description": "Admin module for ShineISP project",
+  "description": "Base module for ShineISP project",
   "license": "BSD-2-Clause",
   "type": "library",
   "minimum-stability": "dev",
@@ -18,8 +18,6 @@
   ],
   "require": {
     "php": ">=5.4"
-  },
-  "require-dev": {
   },
   "autoload": {
     "psr-0": {
