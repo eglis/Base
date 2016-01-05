@@ -12,7 +12,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `itango`
+-- Database: `shineisp`
 --
 
 -- --------------------------------------------------------
@@ -523,8 +523,8 @@ INSERT INTO `base_settings` (`id`, `module`, `parameter`, `value`) VALUES
 (233, 'Paypal', 'currency', 'EUR'),
 (234, 'Paypal', 'mode', 'live'),
 (235, 'Paypal', 'log', '1'),
-(236, 'Paypal', 'baseurl', 'http://itango.dance'),
-(237, 'Paypal', 'receiver', 'info@itango.it'),
+(236, 'Paypal', 'baseurl', 'http://shineisp.com'),
+(237, 'Paypal', 'receiver', 'info@shineisp.it'),
 (238, 'Paypal', 'fee', '4.50'),
 (239, 'Paypal', 'feebase', '0.5'),
 (240, 'Paypal', 'feelowlimit', '0.5'),
@@ -532,7 +532,7 @@ INSERT INTO `base_settings` (`id`, `module`, `parameter`, `value`) VALUES
 (242, 'Paypal', 'signature', 'AK.pB4Ep4eHQF8gOQaIAaWaHSI9XA9mg4uAzQ5XywgR8tTf4bjsatZVw'),
 (243, 'Paypal', 'appid', 'APP-0SG44686BW834981B'),
 (244, 'Paypal', 'password', 'TJS5TW84EKQTTFS8'),
-(256, 'Disqus', 'shortname', 'itangosite'),
+(256, 'Disqus', 'shortname', 'shineispsite'),
 (327, 'Events', 'eventsperpage', '25'),
 (328, 'Events', 'km_radius', '100'),
 (329, 'Events', 'usereventsperpage', '30'),
@@ -545,12 +545,12 @@ INSERT INTO `base_settings` (`id`, `module`, `parameter`, `value`) VALUES
 (352, 'Cms', 'debug', '0'),
 (397, 'Base', 'active', '1'),
 (398, 'Base', 'iscompressed', '0'),
-(399, 'Base', 'name', 'iTango'),
-(400, 'Base', 'email', 'info@itango.it'),
-(401, 'Base', 'slogan', 'a new way to share tango events'),
-(402, 'Base', 'metatitle', 'Discover your best Tango events'),
-(403, 'Base', 'metadescription', 'iTango is a simple free events collector where all the Tango accademias share the Tango events using their own Google Calendar profile and/or Facebook page. Share your Tango events here and all your friends will partecipate to your party!'),
-(404, 'Base', 'metakeywords', 'events, tango, milonga, tickets, exibitions, stages,party,music,festival,google calendar,facebook events,events manager'),
+(399, 'Base', 'name', 'shineisp'),
+(400, 'Base', 'email', 'info@shineisp.it'),
+(401, 'Base', 'slogan', 'a new way to handle the customers'),
+(402, 'Base', 'metatitle', 'Discover your best offers ever!'),
+(403, 'Base', 'metadescription', 'ShineISP is a billing system to manage your customers (CMS, eCommerce, CRM, ERP) like WHMCS and WHMAP, Parallels Plesk Billing, AWBS (Advanced Webhosting Billing System) and ClientExec.'),
+(404, 'Base', 'metakeywords', 'shineisp, zend framework, cms, orm, eCommerce, erp'),
 (405, 'Base', 'headscript', '    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">\r\n    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Kaushan+Script">'),
 (406, 'Base', 'bodyscript', ''),
 (407, 'Base', 'ganalytics', '<script> (function(i,s,o,g,r,a,m){i[''GoogleAnalyticsObject'']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,''script'',''//www.google-analytics.com/analytics.js'',''ga''); ga(''create'', ''UA-382523-23'', ''auto''); ga(''send'', ''pageview''); </script>');
