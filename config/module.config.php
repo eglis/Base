@@ -234,7 +234,8 @@ return array(
             'Languagecodes' => 'Base\View\Helper\LanguageCodes',
             'recurrence' => 'Base\View\Helper\Recurrence',
             'socialSignInButton' => 'Base\View\Helper\SocialSignInButton',
-            'headMeta' => 'Base\View\Helper\HeadMeta'
+            'headMeta' => 'Base\View\Helper\HeadMeta',
+            'createMap' => 'Events\View\Helper\MapHelper'
         )
     ),
     'view_manager' => array(
