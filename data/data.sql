@@ -552,8 +552,7 @@ INSERT INTO `base_settings` (`id`, `module`, `parameter`, `value`) VALUES
 (403, 'Base', 'metadescription', 'ShineISP is a billing system to manage your customers (CMS, eCommerce, CRM, ERP) like WHMCS and WHMAP, Parallels Plesk Billing, AWBS (Advanced Webhosting Billing System) and ClientExec.'),
 (404, 'Base', 'metakeywords', 'shineisp, zend framework, cms, orm, eCommerce, erp'),
 (405, 'Base', 'headscript', '    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">\r\n    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Kaushan+Script">'),
-(406, 'Base', 'bodyscript', ''),
-(407, 'Base', 'ganalytics', '<script> (function(i,s,o,g,r,a,m){i[''GoogleAnalyticsObject'']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,''script'',''//www.google-analytics.com/analytics.js'',''ga''); ga(''create'', ''UA-382523-23'', ''auto''); ga(''send'', ''pageview''); </script>');
+(406, 'Base', 'bodyscript', '');
 
 -- --------------------------------------------------------
 
