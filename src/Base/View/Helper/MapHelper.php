@@ -32,7 +32,7 @@ class MapHelper extends AbstractHelper implements ServiceLocatorAwareInterface {
         $coords = array();
         $serviceLocator = $this->getServiceLocator()->getServiceLocator();
         $settingsService = $serviceLocator->get('SettingsService');
-        $googleapikey = $settingsService->getValueByParameter('Events', 'googleapikey');
+        $googleapikey = $settingsService->getValueByParameter('General', 'googleapikey');
         
         if(!empty($address) && is_string($address)){
             
@@ -42,6 +42,6 @@ class MapHelper extends AbstractHelper implements ServiceLocatorAwareInterface {
             }
         }
         
-        return $this->view->render('events/partial/map', array('coords' => $coords, 'key' => $googleapikey, 'zoom' => $zoom));
+        return $this->view->render('base/partial/map', array('coords' => $coords, 'key' => $googleapikey, 'zoom' => $zoom));
     }
 }
