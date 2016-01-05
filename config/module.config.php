@@ -235,7 +235,7 @@ return array(
             'recurrence' => 'Base\View\Helper\Recurrence',
             'socialSignInButton' => 'Base\View\Helper\SocialSignInButton',
             'headMeta' => 'Base\View\Helper\HeadMeta',
-            'createMap' => 'Events\View\Helper\MapHelper'
+            'createMap' => 'Base\View\Helper\MapHelper'
         )
     ),
     'view_manager' => array(
