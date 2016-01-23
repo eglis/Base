@@ -55,6 +55,8 @@ return array(
                 'label' => _('Settings'),
                 'route' => 'zfcadmin/languages',
                 'icon' => 'fa fa-cog',
+                'resources' => 'adminmenu',
+                'privilege' => 'list',
                 'order' => 1000,
                 'pages' => array(
                     array(
