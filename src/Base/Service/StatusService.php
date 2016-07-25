@@ -61,18 +61,18 @@ class StatusService implements StatusServiceInterface, EventManagerAwareInterfac
 		$this->tableGateway = $tableGateway;
 		$this->translator = $translator;
 	}
-	
-    /**
-     * @inheritDoc
-     */
-    public function findAll($section="generic")
-    {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($section) {
-    		$select->where(array('section' => $section));
-        });
-        
-        return $records;
-    }
+
+	/**
+	 * @inheritDoc
+	 */
+	public function findAll($section="generic")
+	{
+		$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($section) {
+			$select->where(array('section' => $section));
+		});
+
+		return $records;
+	}
 
     /**
      * @inheritDoc
