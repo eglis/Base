@@ -10,7 +10,7 @@
 namespace Base\Controller;
 
 use Base\Service\LanguagesService;
-
+use Base\Form\LanguagesForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use ZfcDatagrid\Column;
@@ -19,68 +19,61 @@ use ZfcDatagrid\Column\Style;
 use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
+use Zend\Db\Adapter\Adapter;
+use ZfcDatagrid\Datagrid;
 
 class LanguagesAdminController extends AbstractActionController
 {
 	protected $languagesService;
-	protected $translator;
-	
-	/**
-	 * preDispatch of the page
-	 *
-	 * (non-PHPdoc)
-	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
-	 */
-	public function onDispatch(\Zend\Mvc\MvcEvent $e){
-	    $this->translator = $e->getApplication()->getServiceManager()->get('translator');
-	    return parent::onDispatch( $e );
-	}
-	
-	public function __construct(LanguagesService $languagesService)
-	{
-		$this->languagesService = $languagesService;
-	}
-	
+    protected $form;
+    protected $translator;
+    protected $adapter;
+    protected $datagrid;
+
+	public function __construct(LanguagesService $recordService, LanguagesForm $form, Adapter $adapter, Datagrid $datagrid, $translator)
+    {
+        $this->recordService = $recordService;
+        $this->form = $form;
+        $this->translator = $translator;
+        $this->adapter = $adapter;
+        $this->datagrid = $datagrid;
+    }
     /**
      * Add new information
      */
     public function addAction ()
     {
-    	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Base\Form\LanguagesForm');
-    
+
     	$viewModel = new ViewModel(array (
-    			'form' => $form,
+    			'form' => $this->form,
     	));
-    
+
     	$viewModel->setTemplate('base/languages-admin/edit');
     	return $viewModel;
     }
-    
+
     /**
      * Edit the main information
      */
     public function editAction ()
     {
     	$id = $this->params()->fromRoute('id');
-    	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Base\Form\LanguagesForm');
-    
+
     	// Get the record by its id
-    	$rsdata = $this->languagesService->find($id);
-    
+    	$rsdata = $this->recordService->find($id);
+
     	// Bind the data in the form
     	if (! empty($rsdata)) {
-    		$form->bind($rsdata);
+    		$this->form->bind($rsdata);
     	}
-    
+
     	$viewModel = new ViewModel(array (
-    			'form' => $form,
+    			'form' => $this->form,
     	));
-    
+
     	return $viewModel;
     }
-    
+
     /**
      * List of all records
      */
@@ -88,9 +81,9 @@ class LanguagesAdminController extends AbstractActionController
     {
     	$grid = $this->createGrid();
     	$grid->render();
-    
+
     	$response = $grid->getResponse();
-    
+
     	if ($grid->isHtmlInitReponse()) {
     		$view = new ViewModel();
     		$view->addChild($response, 'grid');
@@ -98,34 +91,34 @@ class LanguagesAdminController extends AbstractActionController
     	} else {
     		return $response;
     	}
-    
+
     }
-    
+
     // Create the list grid
     private function createGrid ()
     {
-    	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+    	$dbAdapter = $this->adapter;
     	$select = new Select();
     	$select->from(array ('l' => 'base_languages'));
-    
-    	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
+
+    	$grid = $this->datagrid;
     	$grid->setDefaultItemsPerPage(100);
     	$grid->setDataSource($select, $dbAdapter);
-    
+
     	$colId = new Column\Select('id', 'l');
     	$colId->setLabel('Id');
     	$colId->setIdentity();
     	$grid->addColumn($colId);
-    	
+
     	$col = new Column\Select('language', 'l');
     	$col->setLabel(_('Title'));
     	$col->setWidth(15);
     	$grid->addColumn($col);
-    	
+
     	$col = new Column\Select('locale', 'l');
     	$col->setLabel(_('Locale'));
     	$grid->addColumn($col);
-    
+
     	$col = new Column\Select('base', 'l');
     	$col->setType(new \ZfcDatagrid\Column\Type\PhpString());
     	$col->setLabel(_('Default language'));
@@ -141,7 +134,7 @@ class LanguagesAdminController extends AbstractActionController
 				'1' => _('Yes'),
     	));
     	$grid->addColumn($col);
-    
+
     	$col = new Column\Select('active', 'l');
     	$col->setType(new \ZfcDatagrid\Column\Type\PhpString());
     	$col->setLabel(_('Active'));
@@ -157,29 +150,29 @@ class LanguagesAdminController extends AbstractActionController
 				'1' => _('Yes'),
     	));
     	$grid->addColumn($col);
-    
+
     	// Add actions to the grid
     	$showaction = new Column\Action\Button();
     	$showaction->setAttribute('href', "/admin/languages/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'l')));
     	$showaction->setAttribute('class', 'btn btn-xs btn-success');
 		$showaction->setLabel($this->translator->translate('Edit'));
-    
+
     	$delaction = new Column\Action\Button();
     	$delaction->setAttribute('href', '/admin/languages/delete/' . $delaction->getRowIdPlaceholder());
 		$delaction->setAttribute('onclick', "return confirm('" . _('Are you sure?') . "')");
     	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
 		$delaction->setLabel($this->translator->translate('Delete'));
-    
+
     	$col = new Column\Action();
     	$col->addAction($showaction);
     	$col->addAction($delaction);
     	$grid->addColumn($col);
-    
+
     	$grid->setToolbarTemplate('');
-    
+
     	return $grid;
     }
-    
+
     /**
      * Prepare the data and then save them
      *
@@ -187,60 +180,59 @@ class LanguagesAdminController extends AbstractActionController
      */
     public function processAction ()
     {
-    	
+
     	if (! $this->request->isPost()) {
     		return $this->redirect()->toRoute(NULL, array (
     				'controller' => 'languages',
     				'action' => 'index'
     		));
     	}
-    
+
     	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Base\Form\LanguagesForm');
-    	$form->setData($post);
-    	
+    	$this->form->setData($post);
+
     	$inputFilter = $this->getServiceLocator()->get('LanguagesFilter');
-    	$form->setInputFilter($inputFilter);
-    	 
-    	if (!$form->isValid()) {
-    
+    	$this->form->setInputFilter($inputFilter);
+
+    	if (!$this->form->isValid()) {
+
     		// Get the record by its id
     		$viewModel = new ViewModel(array (
     				'error' => true,
-    				'form' => $form,
+    				'form' => $this->form,
     		));
     		$viewModel->setTemplate('base/languages-admin/edit');
     		return $viewModel;
     	}
-    
+
     	// Get the posted vars
-    	$data = $form->getData();
-    	
+    	$data = $this->form->getData();
+
     	// Save the data in the database
-    	$record = $this->languagesService->save($data);
-    
+    	$record = $this->recordService->save($data);
+
     	$this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate('The information have been saved.'));
-    
+
     	return $this->redirect()->toRoute(NULL, array (
     			'controller' => 'languages',
 				'action' => 'Edit',
     			'id' => $record->getId()
     	));
     }
-    
+
     /**
-     * Delete the records 
+     * Delete the records
      *
      * @return \Zend\Http\Response
      */
     public function deleteAction ()
     {
     	$id = $this->params()->fromRoute('id');
-    
+
     	if (is_numeric($id)) {
-    
+
     		// Delete the record informaiton
-    		$this->languagesService->delete($id);
+    		$this->recordService->delete($id);
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate('The record has been deleted!'));

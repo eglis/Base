@@ -11,33 +11,26 @@ namespace BaseSettings\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use \BaseSettings\Form\GenericForm;
+use \Base\Service\SettingsServiceInterface;
 
 class IndexController extends AbstractActionController
 {
 	protected $recordService;
-	protected $translator;
-	
-	/**
-	 * preDispatch of the index
-	 *
-	 * (non-PHPdoc)
-	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
-	 */
-	public function onDispatch(\Zend\Mvc\MvcEvent $e){
-	    $this->translator = $e->getApplication()->getServiceManager()->get('translator');
-	    return parent::onDispatch( $e );
-	}
-	
-	public function __construct(\Base\Service\SettingsServiceInterface $recordService)
+    protected $form;
+    protected $translator;
+
+	public function __construct(SettingsServiceInterface $recordService, GenericForm $form, $translator)
 	{
-		$this->recordService = $recordService;
+        $this->recordService = $recordService;
+        $this->form = $form;
+        $this->translator = $translator;
 	}
 	
     public function indexAction ()
     {
     	$formData = array();
-		$form = $this->getServiceLocator()->get('FormElementManager')->get('BaseSettings\Form\GenericForm');
-    
+
 		// Get the custom settings of this module: "Base"
 		$records = $this->recordService->findByModule('Base');
 		
@@ -48,10 +41,10 @@ class IndexController extends AbstractActionController
 		}
 		
 		// Fill the form with the data
-		$form->setData($formData);
+		$this->form->setData($formData);
 		
     	$viewModel = new ViewModel(array (
-    			'form' => $form,
+    			'form' => $this->form,
     	));
     
     	$viewModel->setTemplate('base-settings/index/index');
@@ -68,21 +61,20 @@ class IndexController extends AbstractActionController
 	    	$settingsEntity = new \Base\Entity\Settings();
 	    	
 	    	$post = $this->request->getPost();
-	    	$form = $this->getServiceLocator()->get('FormElementManager')->get('BaseSettings\Form\GenericForm');
-	    	$form->setData($post);
+	    	$this->form->setData($post);
 	    	
-	    	if (!$form->isValid()) {
+	    	if (!$this->form->isValid()) {
 	    	
 	    		// Get the record by its id
 	    		$viewModel = new ViewModel(array (
 	    				'error' => true,
-	    				'form' => $form,
+	    				'form' => $this->form,
 	    		));
 	    		$viewModel->setTemplate('base-settings/index/index');
 	    		return $viewModel;
 	    	}
 	    	
-	    	$data = $form->getData();
+	    	$data = $this->form->getData();
 	    	
 	    	// Cleanup the custom settings
 	   		$this->recordService->cleanup('Base');
