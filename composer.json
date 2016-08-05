@@ -1,36 +1,34 @@
 {
   "name": "shinesoftware-zf-modules/base",
-  "description": "Base module for ShineISP project",
+  "description": "Base module for Zf2 project",
   "license": "BSD-2-Clause",
   "type": "library",
   "minimum-stability": "dev",
   "keywords": [
     "zf2",
-    "shineisp"
+    "base",
+    "address",
+    "region",
+    "province",
+    "languages"
   ],
   "homepage": "http://github.com/shinesoftware-zf-modules/Base",
   "authors": [
     {
       "name": "Michelangelo Turillo",
-      "email": "info@shineisp.com",
-      "homepage": "http://shineisp.com"
+      "email": "info@shinesoftware.com",
+      "homepage": "http://shinesoftware.com"
     }
   ],
   "require": {
     "php": ">=5.4",
     "zendframework/zend-developer-tools":   "0.*",
     "bjyoungblood/bjy-profiler":            "1.*",
-    "zf-commons/zfc-user":                  "1.4.*",
-    "zf-commons/zfc-admin":                 "0.1.*",
-    "socalnick/scn-social-auth":            "1.19.*",
-    "zendframework/zendservice-recaptcha":  "dev-master",
-    "goalio/goalio-forgotpassword":         "1.*",
-    "bjyoungblood/bjy-authorize":           "1.5.0-beta1",
     "thadafinser/zfc-datagrid":             "dev-master",
     "tecnickcom/tcpdf":                     "dev-master",
     "cderue/googlemaps":                    "dev-master",
-    "rwoverdijk/assetmanager":              "*",
-    "willdurand/geocoder":                  "*"
+    "socalnick/scn-social-auth":            "1.19.*",
+    "goalio/goalio-forgotpassword":         "1.*",
   },
   "autoload": {
     "psr-0": {
