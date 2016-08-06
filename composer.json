@@ -20,6 +20,12 @@
       "homepage": "http://shinesoftware.com"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/shinesoftware/ScnSocialAuth"
+    }
+  ],
   "require": {
     "php": ">=5.4",
     "zendframework/zend-developer-tools":   "0.*",
@@ -27,7 +33,7 @@
     "thadafinser/zfc-datagrid":             "dev-master",
     "tecnickcom/tcpdf":                     "dev-master",
     "cderue/googlemaps":                    "dev-master",
-    "socalnick/scn-social-auth":            "1.19.*",
+    "shinesoftware/scn-social-auth":        "1.19.*",
     "goalio/goalio-forgotpassword":         "1.*"
   },
   "autoload": {
