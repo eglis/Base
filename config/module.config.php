@@ -8,6 +8,33 @@
  */
 
 return array(
+
+    'asset_manager' => array(
+        'resolver_configs' => array(
+            'collections' => array(
+                'js/application.js' => array(
+                    'commons/js/jquery-1.11.1.js',
+                    'commons/js/bootstrap.min.js',
+                    'commons/js/bootstrap-hogan-2.0.0.js',
+                    'commons/js/bootstrap-typeahead.min.js',
+                    'commons/js/jquery.easing.min.js',
+                    'commons/js/classie.js',
+                    'js/base.js',
+                ),
+                'css/application.css' => array(
+                    'commons/css/bootstrap.min.css',
+                    'commons/css/bootstrap-typeahead.css',
+                    'commons/css/font-awesome.min.css',
+                    'css/base.css',
+                ),
+            ),
+            'paths' => array(
+                __DIR__ . '/../public',
+                __DIR__ . '/../../../../public'
+            ),
+        ),
+    ),
+
     'bjyauthorize' => array(
         'guards' => array(
             'BjyAuthorize\Guard\Route' => array(
@@ -39,9 +66,11 @@ return array(
                 array('route' => 'contact/thank-you', 'roles' => array('guest')),
 
                 // Custom routes
+                array('route' => 'home', 'roles' => array('guest')),
                 array('route' => 'language', 'roles' => array('guest')),
                 array('route' => 'search', 'roles' => array('guest')),
                 array('route' => 'location', 'roles' => array('guest')),
+
                 array('route' => 'zfcadmin/base', 'roles' => array('admin')),
                 array('route' => 'zfcadmin/base/default', 'roles' => array('admin')),
                 array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
@@ -50,12 +79,18 @@ return array(
         ),
     ),
     'navigation' => array(
+        'default' => array(
+            'main' => array(
+                'label' => _('Home'),
+                'route' => 'home',
+            )
+        ),
         'admin' => array(
             'settings' => array(
                 'label' => _('Settings'),
-                'route' => 'zfcadmin/languages',
+                'route' => 'zfcadmin',
                 'icon' => 'fa fa-cog',
-                'resources' => 'adminmenu',
+                'resource' => 'adminmenu',
                 'privilege' => 'list',
                 'order' => 1000,
                 'pages' => array(
@@ -76,6 +111,16 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+            'home' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route' => '/',
+                    'defaults' => array(
+                        'controller' => 'Base\Controller\Index',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
             'language' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -173,7 +218,11 @@ return array(
             ),
         ),
     ),
+
     'controllers' => array(
+        'invokables' => array(
+            'Base\Controller\Index' => 'Base\Controller\IndexController'
+        ),
         'factories' => array(
             'Base\Controller\LanguagesAdmin' => 'Base\Factory\LanguagesControllerFactory',
             'Base\Controller\LanguageSwitcher' => 'Base\Factory\LanguageSwitcherControllerFactory',
@@ -197,6 +246,7 @@ return array(
         'invokables' => array(
             'Zend\Session\SessionManager' => 'Zend\Session\SessionManager',
         ),
+
         'factories' => array(
             'Base\Listeners\UserRegisterListener' => function ($sm) {
                 $config = $sm->get('config');
@@ -213,7 +263,14 @@ return array(
                 $logger->addWriter($writer);
                 return $logger;
             },
+
             'goalioforgotpassword_forgot_form' => 'Base\Factory\ForgotFactory',
+
+            'navigation' => function ($sm) {
+                $navigation = new \Zend\Navigation\Service\DefaultNavigationFactory;
+                $navigation = $navigation->createService($sm);
+                return $navigation;
+            }
         ),
     ),
     'translator' => array(
@@ -250,6 +307,8 @@ return array(
             'zfc-user' => __DIR__ . '/../view',
         ),
         'template_map' => array(
+            'layout/layout' => __DIR__ . '/../view/layout/frontend.phtml',
+
             'goalioforgotpassword' => __DIR__ . '/../view',
             'zfc-user/user/login' => __DIR__ . '/../view/zfc-user/user/login.phtml',
             'phly-contact/contact/index' => __DIR__ . '/../view/phly-contact/contact/index.phtml',
