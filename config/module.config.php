@@ -42,7 +42,7 @@ return array(
                 array('route' => 'language', 'roles' => array('guest')),
                 array('route' => 'search', 'roles' => array('guest')),
                 array('route' => 'location', 'roles' => array('guest')),
-                array('route' => 'zfcadmin/base', 'roles' => array('admin')),
+                array('route' => 'zfcadmin', 'roles' => array('admin')),
                 array('route' => 'zfcadmin/base/default', 'roles' => array('admin')),
                 array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
                 array('route' => 'zfcadmin/languages/default', 'roles' => array('admin')),
@@ -50,14 +50,14 @@ return array(
         ),
     ),
     'navigation' => array(
+
         'admin' => array(
+
             'settings' => array(
                 'label' => _('Settings'),
-                'route' => 'zfcadmin/languages',
-                'icon' => 'fa fa-cog',
-                'resources' => 'adminmenu',
+                'route' => 'zfcadmin',
                 'privilege' => 'list',
-                'order' => 1000,
+                'resource' => 'adminmenu',
                 'pages' => array(
                     array(
                         'label' => 'Languages',
