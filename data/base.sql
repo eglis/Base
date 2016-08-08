@@ -325,6 +325,7 @@ CREATE TABLE `base_languages` (
   `language` varchar(250) NOT NULL,
   `locale` varchar(5) NOT NULL,
   `code` varchar(2) NOT NULL,
+  `hreflang` varchar(2) NOT NULL,
   `base` tinyint(1) DEFAULT '0',
   `active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
