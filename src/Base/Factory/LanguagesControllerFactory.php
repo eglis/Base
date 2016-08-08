@@ -22,6 +22,8 @@ class LanguagesControllerFactory implements FactoryInterface
         $form = $realServiceLocator->get('FormElementManager')->get('Base\Form\LanguagesForm');
         $adapter = $realServiceLocator->get('Zend\Db\Adapter\Adapter');
         $datagrid = $realServiceLocator->get('ZfcDatagrid\Datagrid');
-        return new LanguagesAdminController($languagesService, $form, $adapter, $datagrid, $translator);
+        $formfilter = $realServiceLocator->get('LanguagesFilter');
+
+        return new LanguagesAdminController($languagesService, $form, $formfilter, $adapter, $datagrid, $translator);
     }
 }

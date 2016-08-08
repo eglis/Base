@@ -11,6 +11,7 @@ namespace Base\Controller;
 
 use Base\Service\LanguagesService;
 use Base\Form\LanguagesForm;
+use Base\Form\LanguagesFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use ZfcDatagrid\Column;
@@ -26,14 +27,16 @@ class LanguagesAdminController extends AbstractActionController
 {
 	protected $languagesService;
     protected $form;
+    protected $formfilter;
     protected $translator;
     protected $adapter;
     protected $datagrid;
 
-	public function __construct(LanguagesService $recordService, LanguagesForm $form, Adapter $adapter, Datagrid $datagrid, $translator)
+	public function __construct(LanguagesService $recordService, LanguagesForm $form, LanguagesFilter $formfilter, Adapter $adapter, Datagrid $datagrid, $translator)
     {
         $this->recordService = $recordService;
         $this->form = $form;
+        $this->formfilter = $formfilter;
         $this->translator = $translator;
         $this->adapter = $adapter;
         $this->datagrid = $datagrid;
@@ -191,8 +194,7 @@ class LanguagesAdminController extends AbstractActionController
     	$post = $this->request->getPost();
     	$this->form->setData($post);
 
-    	$inputFilter = $this->getServiceLocator()->get('LanguagesFilter');
-    	$this->form->setInputFilter($inputFilter);
+    	$this->form->setInputFilter($this->formfilter);
 
     	if (!$this->form->isValid()) {
 
