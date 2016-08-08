@@ -1,7 +1,7 @@
 {
   "name": "shinesoftware-zf-modules/base",
   "description": "Base module for Zf2 project",
-  "license": "BSD-2-Clause",
+  "license": "BSD-3-Clause",
   "type": "library",
   "minimum-stability": "dev",
   "keywords": [
