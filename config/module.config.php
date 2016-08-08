@@ -79,11 +79,16 @@ return array(
         ),
     ),
     'navigation' => array(
+
         'default' => array(
-            'main' => array(
+            'home' => array(
                 'label' => _('Home'),
                 'route' => 'home',
-            )
+                'icon' => 'fa fa-home',
+                'resource' => 'menu',
+                'privilege' => 'list',
+                'order' => 0
+            ),
         ),
         'admin' => array(
             'settings' => array(
