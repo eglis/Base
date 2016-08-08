@@ -25,6 +25,12 @@
     "issues": "https://github.com/shinesoftware-zf-modules/Base/issues/new",
     "gitter": "https://github.com/shinesoftware-zf-modules/Base/"
   },
+
+  "suggests": {
+    "shinesoftware-zf-modules/admin": "Admin module provides a good default admin panel for your ZF project",
+    "shinesoftware-zf-modules/cms": "A simple Cms module for handle the content of the pages of the website."
+  },
+
   "require": {
     "php": ">=5.4",
     "zendframework/zend-developer-tools":   "0.*",
