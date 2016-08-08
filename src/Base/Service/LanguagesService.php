@@ -123,6 +123,7 @@ class LanguagesService implements LanguagesServiceInterface
 	public function getCodes($onlyActive=false)
 	{
 		$i = 0;
+        $langList = array();
 
 		if($onlyActive) {
             $languages = $this->findActive();
@@ -141,7 +142,10 @@ class LanguagesService implements LanguagesServiceInterface
         }
 
         // Sorting of the result
-        asort($langList);
+        if(!empty($langList)){
+            asort($langList);
+        }
+
 		return $langList;
 	}
 	
