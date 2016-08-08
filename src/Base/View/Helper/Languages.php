@@ -42,6 +42,6 @@ class Languages extends AbstractHelper implements ServiceLocatorAwareInterface
         if(!empty($selectedLanguage)){
             $selLanguage = $selectedLanguage->getLanguage();
         }
-        return $this->view->render('base/partial/languages', array('languages' => $langList, 'selectedLanguage' => $selLanguage));
+        return $this->view->render('partial/languages', array('languages' => $langList, 'selectedLanguage' => $selLanguage));
     }
 }
