@@ -290,17 +290,20 @@ return array(
     ),
     'view_helpers' => array(
         'invokables' => array(
-            'settings' => 'Base\View\Helper\Settings',
-            'datetime' => 'Base\View\Helper\Datetime',
             'youtube' => 'Base\View\Helper\YouTube',
-            'user' => 'Base\View\Helper\User',
-            'languages' => 'Base\View\Helper\Languages',
-            'Languagecodes' => 'Base\View\Helper\LanguageCodes',
-            'recurrence' => 'Base\View\Helper\Recurrence',
             'socialSignInButton' => 'Base\View\Helper\SocialSignInButton',
             'headMeta' => 'Base\View\Helper\HeadMeta',
-            'createMap' => 'Base\View\Helper\MapHelper'
-        )
+        ),
+        'factories' => array (
+            'createMap' => 'Base\Factory\MapHelperFactory',
+            'languagecodes' => 'Base\Factory\LanguageCodesHelperFactory',
+            'datetime' => 'Base\Factory\DatetimeHelperFactory',
+            'recurrence' => 'Base\Factory\RecurrenceHelperFactory',
+            'languagesonsite' => 'Base\Factory\LanguagesOnSiteHelperFactory',
+            'settings' => 'Base\Factory\SettingsHelperFactory',
+            'userinfo' => 'Base\Factory\UserHelperFactory',
+
+        ),
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,

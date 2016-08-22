@@ -1,40 +1,37 @@
-<?php 
+<?php
 namespace Base\View\Helper;
-use Zend\View\Helper\AbstractHelper;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
-class LanguageCodes extends AbstractHelper implements ServiceLocatorAwareInterface  
+use Base\Service\LanguagesService;
+use Zend\View\Helper\AbstractHelper;
+
+class LanguageCodes extends AbstractHelper
 {
     /**
-     * Set the service locator.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return CustomHelper
+     * @var LanguageService
      */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-        return $this;
-    }
+    protected $service;
+
     /**
-     * Get the service locator.
-     *
-     * @return \Zend\ServiceManager\ServiceLocatorInterface
+     * @var MvcTranslator
      */
-    public function getServiceLocator()
+    protected $translator;
+
+    /**
+     * LanguageCodes constructor.
+     * @param LanguageService $service
+     * @param \Zend\Mvc\I18n\Translator $translator
+     */
+    public function __construct(LanguagesService $service, \Zend\Mvc\I18n\Translator $translator)
     {
-        return $this->serviceLocator;
+        $this->service = $service;
+        $this->translator = $translator;
     }
-    
+
     public function __invoke()
     {
-        $selLanguage = null;
-        $serviceLocator = $this->getServiceLocator()->getServiceLocator();
-        $languageService = $serviceLocator->get('LanguagesService');
 
         // get the language codes
-        $langList = $languageService->getCodes();
+        $langList = $this->service->getCodes();
         return $langList;
     }
 }

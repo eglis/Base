@@ -80,6 +80,21 @@ class LanguagesService implements LanguagesServiceInterface
         return $records;
     }
 
+
+    /**
+     * @inheritDoc
+     */
+    public function getLanguageOnSite()
+    {
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+            $select->where(array('active' => 1));
+            $select->where(array('showonsite' => 1));
+            $select->order(array('language ASC'));
+        });
+
+        return $records;
+    }
+
 	/**
 	 * @inheritDoc
 	 */
@@ -92,8 +107,42 @@ class LanguagesService implements LanguagesServiceInterface
 		$row = $rowset->current();
 		return $row;
 	}
-	
-	/**
+
+    /**
+     * Get all the languages
+     *
+     * @return ResultSet
+     */
+    public function fetchAll ()
+    {
+        $resultSet = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+            $select->order('language');
+        });
+        $resultSet->buffer();
+        return $resultSet;
+    }
+
+    /**
+     * Get Translation by the locale
+     *
+     * @param string $locale
+     * @throws \Exception
+     * @return Row
+     */
+    public function getTranslationbyLocale ($locale)
+    {
+        if(!empty($locale)){
+            $rowset = $this->tableGateway->select(array (
+                'locale' => $locale
+            ));
+            $row = $rowset->current();
+            return $row;
+        }
+        return array();
+    }
+
+
+    /**
 	 * @inheritDoc
 	 */
 	public function findByName($name)

@@ -123,8 +123,28 @@ class CountryService implements CountryServiceInterface
 				'id' => $id
 		));
 	}
-	
-	/**
+
+
+    /**
+     * Get Country by Id
+     *
+     * @param string $id
+     * @throws \Exception
+     * @return Row
+     */
+    public function getCountry ($id)
+    {
+        $id = (int) $id;
+        $rowset = $this->tableGateway->select(array('id' => $id));
+        $row = $rowset->current();
+        if (! $row) {
+            throw new \Exception("Could not find row $id");
+        }
+        return $row;
+    }
+
+
+    /**
 	 * @inheritDoc
 	 */
 	public function save(\Base\Entity\Country $record)

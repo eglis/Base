@@ -1,37 +1,27 @@
-<?php 
+<?php
 namespace Base\View\Helper;
-use Zend\View\Helper\AbstractHelper;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
-class User extends AbstractHelper implements ServiceLocatorAwareInterface  
+use Pd\Service\PdService;
+use Zend\View\Helper\AbstractHelper;
+
+class User extends AbstractHelper
 {
     /**
-     * Set the service locator.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return CustomHelper
+     * @var PdService
      */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-        return $this;
-    }
+    protected $service;
+
     /**
-     * Get the service locator.
-     *
-     * @return \Zend\ServiceManager\ServiceLocatorInterface
+     * User constructor.
+     * @param PdService $service
      */
-    public function getServiceLocator()
+    public function __construct(PdService $service)
     {
-        return $this->serviceLocator;
+        $this->service = $service;
     }
-    
+
     public function __invoke($userId)
     {
-        $serviceLocator = $this->getServiceLocator()->getServiceLocator();
-//         $user = $serviceLocator->get('PdTable');
-//         $theuser = $user->getPdByUserId($userId);
-        return null;
+        return $this->service->getPdByUserId($userId);
     }
 }

@@ -51,6 +51,7 @@ class Languages implements LanguagesInterface {
 	public $hreflang;
     public $code;
     public $base;
+    public $showonsite;
     public $active;
     
     
@@ -156,6 +157,22 @@ class Languages implements LanguagesInterface {
 	public function setBase($base) {
 		$this->base = $base;
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getShowonsite()
+    {
+        return $this->showonsite;
+    }
+
+    /**
+     * @param mixed $showonsite
+     */
+    public function setShowonsite($showonsite)
+    {
+        $this->showonsite = $showonsite;
+    }
 
 	/**
 	 * @return the $active

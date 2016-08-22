@@ -58,6 +58,8 @@ interface LanguagesInterface
     public function setCode($code);
     public function getBase();
     public function setBase($base);
+    public function getShowonsite();
+    public function setShowonsite($showonsite);
     public function getActive();
     public function setActive($active);
 }

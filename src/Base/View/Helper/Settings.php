@@ -1,38 +1,29 @@
-<?php 
+<?php
 namespace Base\View\Helper;
-use Zend\View\Helper\AbstractHelper;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
-class Settings extends AbstractHelper implements ServiceLocatorAwareInterface  
+use Base\Service\SettingsService;
+use Zend\View\Helper\AbstractHelper;
+
+class Settings extends AbstractHelper
 {
     /**
-     * Set the service locator.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return CustomHelper
+     * @var LanguageService
      */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-        return $this;
-    }
+    protected $service;
+
     /**
-     * Get the service locator.
-     *
-     * @return \Zend\ServiceManager\ServiceLocatorInterface
+     * Languages constructor.
+     * @param LanguageService $service
      */
-    public function getServiceLocator()
+    public function __construct(SettingsService $service)
     {
-        return $this->serviceLocator;
+        $this->service = $service;
     }
-    
-    public function __invoke($parameter, $module="base")
+
+    public function __invoke($parameter, $module = "base")
     {
-        $serviceLocator = $this->getServiceLocator()->getServiceLocator();
-        $settings = $serviceLocator->get('SettingsService');
-        if(!empty($parameter)){
-            return $settings->getValueByParameter($module, $parameter);
+        if (!empty($parameter)) {
+            return $this->service->getValueByParameter($module, $parameter);
         }
         return false;
     }

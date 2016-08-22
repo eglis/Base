@@ -3,9 +3,8 @@
     <li class="dropdown">
     	<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-flag"></i> <span class="hidden-sm hidden-md"><?php echo !empty($this->selectedLanguage) ? $this->selectedLanguage : $this->translate('Language') ?></span> <b class="caret"></b></a>
     	<ul class="dropdown-menu">
-    	    <?php $languages = $this->languages?>
-			<?php foreach ($languages as $language): ?>
-				<li><a href="/<?php echo $language['code'] ?>"><i class="fa fa-flag"></i> <?php echo $language['language'] ?></a></li>
+			<?php foreach ($this->languages as $language): ?>
+				<li><a href="/<?php echo $language->getCode() ?>"><i class="fa fa-flag"></i> <?php echo $language->getLanguage() ?></a></li>
 			<?php endforeach; ?>
         </ul>
     </li>

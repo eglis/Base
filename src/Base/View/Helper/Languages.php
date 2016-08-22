@@ -1,47 +1,45 @@
-<?php 
+<?php
 namespace Base\View\Helper;
-use Zend\View\Helper\AbstractHelper;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
-class Languages extends AbstractHelper implements ServiceLocatorAwareInterface  
+use Base\Service\LanguagesService;
+use Zend\View\Helper\AbstractHelper;
+
+class Languages extends AbstractHelper
 {
+
     /**
-     * Set the service locator.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return CustomHelper
+     * @var LanguageService
      */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-        return $this;
-    }
+    protected $service;
+
     /**
-     * Get the service locator.
-     *
-     * @return \Zend\ServiceManager\ServiceLocatorInterface
+     * @var MvcTranslator
      */
-    public function getServiceLocator()
+    protected $translator;
+
+    /**
+     * Languages constructor.
+     * @param LanguageService $service
+     */
+    public function __construct(LanguagesService $service, $translator)
     {
-        return $this->serviceLocator;
+        $this->service = $service;
+        $this->translator = $translator;
     }
-    
+
     public function __invoke()
     {
         $selLanguage = null;
-        $serviceLocator = $this->getServiceLocator()->getServiceLocator();
-        $languageService = $serviceLocator->get('LanguagesService');
-        $translator = $serviceLocator->get('translator');
-        
+
         // get the language codes
-        $langList = $languageService->getCodes(true);
-        
-        $locale = $translator->getTranslator()->getLocale();
-        $selectedLanguage = $languageService->findByLocale($locale);
-        if(!empty($selectedLanguage)){
+        $langList = $this->service->getLanguageOnSite();
+
+        $locale = $this->translator->getTranslator()->getLocale();
+        $selectedLanguage = $this->service->findByLocale($locale);
+        if (!empty($selectedLanguage)) {
             $selLanguage = $selectedLanguage->getLanguage();
         }
+
         return $this->view->render('partial/languages', array('languages' => $langList, 'selectedLanguage' => $selLanguage));
     }
 }
