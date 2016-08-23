@@ -292,18 +292,102 @@ UNLOCK TABLES;
 # Dump of table base_languages
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `base_languages`;
 
+DROP TABLE IF EXISTS `base_languages`;
 CREATE TABLE `base_languages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `language` varchar(250) NOT NULL,
   `locale` varchar(5) NOT NULL,
   `code` varchar(2) NOT NULL,
-  `hreflang` varchar(2) NOT NULL,
   `base` tinyint(1) DEFAULT '0',
   `active` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `showonsite` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `base_languages`
+--
+
+INSERT INTO `base_languages` (`id`, `language`, `locale`, `code`, `base`, `active`, `showonsite`) VALUES
+(1, 'Afrikaans', 'af_ZA', 'af', 0, 0, 0),
+(2, 'Albanian', 'sq_AL', 'sq', 0, 0, 0),
+(3, 'Arabic', 'ar_SA', 'ar', 0, 0, 0),
+(4, 'Armenian', '', 'hy', 0, 0, 0),
+(5, 'Basque', '', 'eu', 0, 0, 0),
+(6, 'Bengali', '', 'bn', 0, 0, 0),
+(7, 'Bulgarian', '', 'bg', 0, 0, 0),
+(8, 'Catalan', '', 'ca', 0, 0, 0),
+(9, 'Cambodian', '', 'km', 0, 0, 0),
+(10, 'Chinese (Mandarin)', '', 'zh', 0, 0, 0),
+(11, 'Croatian', '', 'hr', 0, 0, 0),
+(12, 'Czech', 'cz_CZ', 'cs', 0, 0, 0),
+(13, 'Danish', '', 'da', 0, 0, 0),
+(14, 'Dutch', 'nl_NL', 'nl', 0, 0, 0),
+(15, 'English', 'en_US', 'en', 1, 1, 1),
+(16, 'Estonian', '', 'et', 0, 0, 0),
+(17, 'Fiji', '', 'fj', 0, 0, 0),
+(18, 'Finnish', '', 'fi', 0, 0, 0),
+(19, 'French', '', 'fr', 0, 0, 0),
+(20, 'Georgian', '', 'ka', 0, 0, 0),
+(21, 'German', '', 'de', 0, 0, 0),
+(22, 'Greek', '', 'el', 0, 0, 0),
+(23, 'Gujarati', '', 'gu', 0, 0, 0),
+(24, 'Hebrew', '', 'he', 0, 0, 0),
+(25, 'Hindi', '', 'hi', 0, 0, 0),
+(26, 'Hungarian', '', 'hu', 0, 0, 0),
+(27, 'Icelandic', '', 'is', 0, 0, 0),
+(28, 'Indonesian', '', 'id', 0, 0, 0),
+(29, 'Irish', '', 'ga', 0, 0, 0),
+(30, 'Italian', 'it_IT', 'it', 0, 1, 1),
+(31, 'Japanese', '', 'ja', 0, 0, 0),
+(32, 'Javanese', '', 'jw', 0, 0, 0),
+(33, 'Korean', '', 'ko', 0, 0, 0),
+(34, 'Latin', '', 'la', 0, 0, 0),
+(35, 'Latvian', '', 'lv', 0, 0, 0),
+(36, 'Lithuanian', '', 'lt', 0, 0, 0),
+(37, 'Macedonian', '', 'mk', 0, 0, 0),
+(38, 'Malay', '', 'ms', 0, 0, 0),
+(39, 'Malayalam', '', 'ml', 0, 0, 0),
+(40, 'Maltese', '', 'mt', 0, 0, 0),
+(41, 'Maori', '', 'mi', 0, 0, 0),
+(42, 'Marathi', '', 'mr', 0, 0, 0),
+(43, 'Mongolian', '', 'mn', 0, 0, 0),
+(44, 'Nepali', '', 'ne', 0, 0, 0),
+(45, 'Norwegian', '', 'no', 0, 0, 0),
+(46, 'Persian', '', 'fa', 0, 0, 0),
+(47, 'Polish', '', 'pl', 0, 0, 0),
+(48, 'Portuguese', '', 'pt', 0, 0, 0),
+(49, 'Punjabi', '', 'pa', 0, 0, 0),
+(50, 'Quechua', '', 'qu', 0, 0, 0),
+(51, 'Romanian', '', 'ro', 0, 0, 0),
+(52, 'Russian', '', 'ru', 0, 0, 0),
+(53, 'Samoan', '', 'sm', 0, 0, 0),
+(54, 'Serbian', '', 'sr', 0, 0, 0),
+(55, 'Slovak', '', 'sk', 0, 0, 0),
+(56, 'Slovenian', '', 'sl', 0, 0, 0),
+(57, 'Spanish', '', 'es', 0, 0, 0),
+(58, 'Swahili', '', 'sw', 0, 0, 0),
+(59, 'Swedish ', '', 'sv', 0, 0, 0),
+(60, 'Tamil', '', 'ta', 0, 0, 0),
+(61, 'Tatar', '', 'tt', 0, 0, 0),
+(62, 'Telugu', '', 'te', 0, 0, 0),
+(63, 'Thai', '', 'th', 0, 0, 0),
+(64, 'Tibetan', '', 'bo', 0, 0, 0),
+(65, 'Tonga', '', 'to', 0, 0, 0),
+(66, 'Turkish', '', 'tr', 0, 0, 0),
+(67, 'Ukranian', '', 'uk', 0, 0, 0),
+(68, 'Urdu', '', 'ur', 0, 0, 0),
+(69, 'Uzbek', '', 'uz', 0, 0, 0),
+(70, 'Vietnamese', '', 'vi', 0, 0, 0),
+(71, 'Welsh', '', 'cy', 0, 0, 0),
+(72, 'Xhosa', '', 'xh', 0, 0, 0),
+(73, 'Kurdish', '', 'ku', 0, 0, 0);
+
+ALTER TABLE `base_languages`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `base_languages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;SET FOREIGN_KEY_CHECKS=1;
 
 LOCK TABLES `base_languages` WRITE;
 /*!40000 ALTER TABLE `base_languages` DISABLE KEYS */;
