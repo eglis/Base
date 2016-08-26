@@ -80,6 +80,18 @@ class LanguagesService implements LanguagesServiceInterface
         return $records;
     }
 
+    /**
+     * Prepare a language list
+     * @return array
+     */
+    public function languagelist(){
+        $data = array();
+        $languages = $this->findActive();
+        foreach ($languages as $language){
+            $data[$language->getId()] = $language->getLanguage();
+        }
+        return $data;
+    }
 
     /**
      * @inheritDoc
