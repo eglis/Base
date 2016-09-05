@@ -1,5 +1,5 @@
 {
-  "name": "shinesoftware-zf-modules/base",
+  "name": "shinesoftware/base",
   "description": "Base module for Zend Framework projects",
   "license": "BSD-3-Clause",
   "type": "library",
