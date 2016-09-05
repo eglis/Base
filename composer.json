@@ -12,7 +12,7 @@
     "province",
     "languages"
   ],
-  "homepage": "http://github.com/shinesoftware-zf-modules/Base",
+  "homepage": "https://shinedev@bitbucket.org/shinesoftware/base.git",
   "authors": [
     {
       "name": "Michelangelo Turillo",
@@ -22,13 +22,13 @@
   ],
   "support": {
     "email": "info@shinesoftware.com",
-    "issues": "https://github.com/shinesoftware-zf-modules/Base/issues/new",
-    "gitter": "https://github.com/shinesoftware-zf-modules/Base/"
+    "issues": "https://shinedev@bitbucket.org/shinesoftware/issues/new",
+    "gitter": "https://shinedev@bitbucket.org/shinesoftware/base/"
   },
 
   "suggests": {
-    "shinesoftware-zf-modules/admin": "Admin module provides a good default admin panel for your ZF project",
-    "shinesoftware-zf-modules/cms": "A simple Cms module for handle the content of the pages of the website."
+    "shinesoftware/admin": "Admin module provides a good default admin panel for your ZF project",
+    "shinesoftware/cms": "A simple Cms module for handle the content of the pages of the website."
   },
 
   "require": {
