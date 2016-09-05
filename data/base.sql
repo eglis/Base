@@ -1,303 +1,335 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4499
-#
-# http://www.sequelpro.com/
-# https://github.com/sequelpro/sequelpro
-#
-# Host: 127.0.0.1 (MySQL 5.6.27)
-# Database: shineisp2
-# Generation Time: 2016-01-23 11:27:20 +0000
-# ************************************************************
+-- phpMyAdmin SQL Dump
+-- version 4.6.3deb1~xenial.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Sep 05, 2016 at 05:30 PM
+-- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
+-- PHP Version: 7.0.8-0ubuntu0.16.04.2
+
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `eurocv2`
+--
 
-# Dump of table base_country
-# ------------------------------------------------------------
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `base_country`
+--
 
 DROP TABLE IF EXISTS `base_country`;
-
 CREATE TABLE `base_country` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `code` varchar(10) DEFAULT NULL,
-  `visible` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `visible` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `base_country` WRITE;
-/*!40000 ALTER TABLE `base_country` DISABLE KEYS */;
+--
+-- Truncate table before insert `base_country`
+--
+
+TRUNCATE TABLE `base_country`;
+--
+-- Dumping data for table `base_country`
+--
 
 INSERT INTO `base_country` (`id`, `name`, `code`, `visible`) VALUES
-  (1, 'Andorra', 'AD', 1),
-  (2, 'United Arab Emirates', 'AE', 1),
-  (3, 'Afghanistan', 'AF', 1),
-  (4, 'Antigua & Barbuda', 'AG', 1),
-  (5, 'Anguilla', 'AI', 1),
-  (6, 'Albania', 'AL', 1),
-  (7, 'Armenia', 'AM', 1),
-  (8, 'Netherlands Antilles', 'AN', 1),
-  (9, 'Angola', 'AO', 1),
-  (10, 'Antarctica', 'AQ', 1),
-  (11, 'Argentina', 'AR', 1),
-  (12, 'American Samoa', 'AS', 1),
-  (13, 'Austria', 'AT', 1),
-  (14, 'Australia', 'AU', 1),
-  (15, 'Aruba', 'AW', 1),
-  (16, 'Azerbaijan', 'AZ', 1),
-  (17, 'Bosnia and Herzegovina', 'BA', 1),
-  (18, 'Barbados', 'BB', 1),
-  (19, 'Bangladesh', 'BD', 1),
-  (20, 'Belgium', 'BE', 1),
-  (21, 'Burkina Faso', 'BF', 1),
-  (22, 'Bulgaria', 'BG', 1),
-  (23, 'Bahrain', 'BH', 1),
-  (24, 'Burundi', 'BI', 1),
-  (25, 'Benin', 'BJ', 1),
-  (26, 'Bermuda', 'BM', 1),
-  (27, 'Brunei Darussalam', 'BN', 1),
-  (28, 'Bolivia', 'BO', 1),
-  (29, 'Brazil', 'BR', 1),
-  (30, 'Bahama', 'BS', 1),
-  (31, 'Bhutan', 'BT', 1),
-  (32, 'Burma (no longer exists)', 'BU', 1),
-  (33, 'Bouvet Island', 'BV', 1),
-  (34, 'Botswana', 'BW', 1),
-  (35, 'Belarus', 'BY', 1),
-  (36, 'Belize', 'BZ', 1),
-  (37, 'Canada', 'CA', 1),
-  (38, 'Cocos (Keeling) Islands', 'CC', 1),
-  (39, 'Central African Republic', 'CF', 1),
-  (40, 'Congo', 'CG', 1),
-  (41, 'Switzerland', 'CH', 1),
-  (42, 'Côte D\'ivoire (Ivory Coas', 'CI', 1),
-  (43, 'Cook Iislands', 'CK', 1),
-  (44, 'Chile', 'CL', 1),
-  (45, 'Cameroon', 'CM', 1),
-  (46, 'China', 'CN', 1),
-  (47, 'Colombia', 'CO', 1),
-  (48, 'Costa Rica', 'CR', 1),
-  (49, 'Czechoslovakia', 'CS', 1),
-  (50, 'Cuba', 'CU', 1),
-  (51, 'Cape Verde', 'CV', 1),
-  (52, 'Christmas Island', 'CX', 1),
-  (53, 'Cyprus', 'CY', 1),
-  (54, 'Czech Republic', 'CZ', 1),
-  (55, 'German Democratic Republic', 'DD', 1),
-  (56, 'Germany', 'DE', 1),
-  (57, 'Djibouti', 'DJ', 1),
-  (58, 'Denmark', 'DK', 1),
-  (59, 'Dominica', 'DM', 1),
-  (60, 'Dominican Republic', 'DO', 1),
-  (61, 'Algeria', 'DZ', 1),
-  (62, 'Ecuador', 'EC', 1),
-  (63, 'Estonia', 'EE', 1),
-  (64, 'Egypt', 'EG', 1),
-  (65, 'Western Sahara', 'EH', 1),
-  (66, 'Eritrea', 'ER', 1),
-  (67, 'Spain', 'ES', 1),
-  (68, 'Ethiopia', 'ET', 1),
-  (69, 'Finland', 'FI', 1),
-  (70, 'Fiji', 'FJ', 1),
-  (71, 'Falkland Islands (Malvina)', 'FK', 1),
-  (72, 'Micronesia', 'FM', 1),
-  (73, 'Faroe Islands', 'FO', 1),
-  (74, 'France', 'FR', 1),
-  (75, 'France, Metropolitan', 'FX', 1),
-  (76, 'Gabon', 'GA', 1),
-  (77, 'United Kingdom (Great Britain)', 'GB', 1),
-  (78, 'Grenada', 'GD', 1),
-  (79, 'Georgia', 'GE', 1),
-  (80, 'French Guiana', 'GF', 1),
-  (81, 'Ghana', 'GH', 1),
-  (82, 'Gibraltar', 'GI', 1),
-  (83, 'Greenland', 'GL', 1),
-  (84, 'Gambia', 'GM', 1),
-  (85, 'Guinea', 'GN', 1),
-  (86, 'Guadeloupe', 'GP', 1),
-  (87, 'Equatorial Guinea', 'GQ', 1),
-  (88, 'Greece', 'GR', 1),
-  (89, 'South Georgia', 'GS', 1),
-  (90, 'Guatemala', 'GT', 1),
-  (91, 'Guam', 'GU', 1),
-  (92, 'Guinea-Bissau', 'GW', 1),
-  (93, 'Guyana', 'GY', 1),
-  (94, 'Hong Kong', 'HK', 1),
-  (95, 'Heard & McDonald Islands', 'HM', 1),
-  (96, 'Honduras', 'HN', 1),
-  (97, 'Croatia', 'HR', 1),
-  (98, 'Haiti', 'HT', 1),
-  (99, 'Hungary', 'HU', 1),
-  (100, 'Indonesia', 'ID', 1),
-  (101, 'Ireland', 'IE', 1),
-  (102, 'Israel', 'IL', 1),
-  (103, 'India', 'IN', 1),
-  (104, 'British Indian Ocean Territories', 'IO', 1),
-  (105, 'Iraq', 'IQ', 1),
-  (106, 'Islamic Republic of Iran', 'IR', 1),
-  (107, 'Iceland', 'IS', 1),
-  (108, 'Italy', 'IT', 1),
-  (109, 'Jamaica', 'JM', 1),
-  (110, 'Jordan', 'JO', 1),
-  (111, 'Japan', 'JP', 1),
-  (112, 'Kenya', 'KE', 1),
-  (113, 'Kyrgyzstan', 'KG', 1),
-  (114, 'Cambodia', 'KH', 1),
-  (115, 'Kiribati', 'KI', 1),
-  (116, 'Comoros', 'KM', 1),
-  (117, 'St. Kitts and Nevis', 'KN', 1),
-  (118, 'Korea, Democratic People', 'KP', 1),
-  (119, 'Korea, Republic of', 'KR', 1),
-  (120, 'Kuwait', 'KW', 1),
-  (121, 'Cayman Islands', 'KY', 1),
-  (122, 'Kazakhstan', 'KZ', 1),
-  (123, 'Lao People\'s Democratic Republic', 'LA', 1),
-  (124, 'Lebanon', 'LB', 1),
-  (125, 'Saint Lucia', 'LC', 1),
-  (126, 'Liechtenstein', 'LI', 1),
-  (127, 'Sri Lanka', 'LK', 1),
-  (128, 'Liberia', 'LR', 1),
-  (129, 'Lesotho', 'LS', 1),
-  (130, 'Lithuania', 'LT', 1),
-  (131, 'Luxembourg', 'LU', 1),
-  (132, 'Latvia', 'LV', 1),
-  (133, 'Libyan Arab Jamahiriya', 'LY', 1),
-  (134, 'Morocco', 'MA', 1),
-  (135, 'Monaco', 'MC', 1),
-  (136, 'Moldova, Republic of ', 'MD', 1),
-  (137, 'Madagascar', 'MG', 1),
-  (138, 'Marshall Islands', 'MH', 1),
-  (139, 'Mali', 'ML', 1),
-  (140, 'Mongolia', 'MN', 1),
-  (141, 'Myanmar', 'MM', 1),
-  (142, 'Macau', 'MO', 1),
-  (143, 'Northern Mariana Islands', 'MP', 1),
-  (144, 'Martinique', 'MQ', 1),
-  (145, 'Mauritania', 'MR', 1),
-  (146, 'Monserrat', 'MS', 1),
-  (147, 'Malta', 'MT', 1),
-  (148, 'Mauritius', 'MU', 1),
-  (149, 'Maldives', 'MV', 1),
-  (150, 'Malawi', 'MW', 1),
-  (151, 'Mexico', 'MX', 1),
-  (152, 'Malaysia', 'MY', 1),
-  (153, 'Mozambique', 'MZ', 1),
-  (154, 'Namibia', 'NA', 1),
-  (155, 'New Caledonia', 'NC', 1),
-  (156, 'Niger', 'NE', 1),
-  (157, 'Norfolk Island', 'NF', 1),
-  (158, 'Nigeria', 'NG', 1),
-  (159, 'Nicaragua', 'NI', 1),
-  (160, 'Netherlands', 'NL', 1),
-  (161, 'Norway', 'NO', 1),
-  (162, 'Nepal', 'NP', 1),
-  (163, 'Nauru', 'NR', 1),
-  (164, 'Neutral Zone', 'NT', 1),
-  (165, 'Niue', 'NU', 1),
-  (166, 'New Zealand', 'NZ', 1),
-  (167, 'Oman', 'OM', 1),
-  (168, 'Panama', 'PA', 1),
-  (169, 'Peru', 'PE', 1),
-  (170, 'French Polynesia', 'PF', 1),
-  (171, 'Papua New Guinea', 'PG', 1),
-  (172, 'Philippines', 'PH', 1),
-  (173, 'Pakistan', 'PK', 1),
-  (174, 'Poland', 'PL', 1),
-  (175, 'St. Pierre & Miquelon', 'PM', 1),
-  (176, 'Pitcairn', 'PN', 1),
-  (177, 'Puerto Rico', 'PR', 1),
-  (178, 'Portugal', 'PT', 1),
-  (179, 'Palau', 'PW', 1),
-  (180, 'Paraguay', 'PY', 1),
-  (181, 'Qatar', 'QA', 1),
-  (182, 'Réunion', 'RE', 1),
-  (183, 'Romania', 'RO', 1),
-  (184, 'Russian Federation', 'RU', 1),
-  (185, 'Rwanda', 'RW', 1),
-  (186, 'Saudi Arabia', 'SA', 1),
-  (187, 'Solomon Islands', 'SB', 1),
-  (188, 'Seychelles', 'SC', 1),
-  (189, 'Sudan', 'SD', 1),
-  (190, 'Sweden', 'SE', 1),
-  (191, 'Singapore', 'SG', 1),
-  (192, 'St. Helena', 'SH', 1),
-  (193, 'Slovenia', 'SI', 1),
-  (194, 'Svalbard & Jan Mayen Island', 'SJ', 1),
-  (195, 'Slovakia', 'SK', 1),
-  (196, 'Sierra Leone', 'SL', 1),
-  (197, 'San Marino', 'SM', 1),
-  (198, 'Senegal', 'SN', 1),
-  (199, 'Somalia', 'SO', 1),
-  (200, 'Suriname', 'SR', 1),
-  (201, 'Sao Tome & Principe', 'ST', 1),
-  (202, 'Union of Soviet Socialist', 'SU', 1),
-  (203, 'El Salvador', 'SV', 1),
-  (204, 'Syrian Arab Republic', 'SY', 1),
-  (205, 'Swaziland', 'SZ', 1),
-  (206, 'Turks & Caicos Islands', 'TC', 1),
-  (207, 'Chad', 'TD', 1),
-  (208, 'French Southern Territories', 'TF', 1),
-  (209, 'Togo', 'TG', 1),
-  (210, 'Thailand', 'TH', 1),
-  (211, 'Tajikistan', 'TJ', 1),
-  (212, 'Tokelau', 'TK', 1),
-  (213, 'Turkmenistan', 'TM', 1),
-  (214, 'Tunisia', 'TN', 1),
-  (215, 'Tonga', 'TO', 1),
-  (216, 'East Timor', 'TP', 1),
-  (217, 'Turkey', 'TR', 1),
-  (218, 'Trinidad & Tobago', 'TT', 1),
-  (219, 'Tuvalu', 'TV', 1),
-  (220, 'Taiwan, Province of China', 'TW', 1),
-  (221, 'Tanzania, United Republic', 'TZ', 1),
-  (222, 'Ukraine', 'UA', 1),
-  (223, 'Uganda', 'UG', 1),
-  (224, 'United States Minor Outly', 'UM', 1),
-  (225, 'United States of America', 'US', 1),
-  (226, 'Uruguay', 'UY', 1),
-  (227, 'Uzbekistan', 'UZ', 1),
-  (228, 'Vatican City State (Holy see)', 'VA', 1),
-  (229, 'St. Vincent & the Grenadi', 'VC', 1),
-  (230, 'Venezuela', 'VE', 1),
-  (231, 'British Virgin Islands', 'VG', 1),
-  (232, 'United States Virgin Isla', 'VI', 1),
-  (233, 'Viet Nam', 'VN', 1),
-  (234, 'Vanuatu', 'VU', 1),
-  (235, 'Wallis & Futuna Islands', 'WF', 1),
-  (236, 'Samoa', 'WS', 1),
-  (237, 'Democratic Yemen', 'YD', 1),
-  (238, 'Yemen', 'YE', 1),
-  (239, 'Mayotte', 'YT', 1),
-  (240, 'Yugoslavia', 'YU', 1),
-  (241, 'South Africa', 'ZA', 1),
-  (242, 'Zambia', 'ZM', 1),
-  (243, 'Zaire', 'ZR', 1),
-  (244, 'Zimbabwe', 'ZW', 1),
-  (245, 'Unknown or unspecified country', 'ZZ', 1),
-  (246, 'Palestine', 'PS', 1);
+(1, 'Afghanistan', 'AF', 1),
+(2, 'Albania', 'AL', 1),
+(3, 'Algeria', 'DZ', 1),
+(4, 'Andorra', 'AD', 1),
+(5, 'Angola', 'AO', 1),
+(6, 'Antigua and Barbuda', 'AG', 1),
+(7, 'Argentina', 'AR', 1),
+(8, 'Armenia', 'AM', 1),
+(9, 'Australia', 'AU', 1),
+(10, 'Austria', 'AT', 1),
+(11, 'Azerbaijan', 'AZ', 1),
+(12, 'Bahamas, The', 'BS', 1),
+(13, 'Bahrain', 'BH', 1),
+(14, 'Bangladesh', 'BD', 1),
+(15, 'Barbados', 'BB', 1),
+(16, 'Belarus', 'BY', 1),
+(17, 'Belgium', 'BE', 1),
+(18, 'Belize', 'BZ', 1),
+(19, 'Benin', 'BJ', 1),
+(20, 'Bhutan', 'BT', 1),
+(21, 'Bolivia', 'BO', 1),
+(22, 'Bosnia and Herzegovina', 'BA', 1),
+(23, 'Botswana', 'BW', 1),
+(24, 'Brazil', 'BR', 1),
+(25, 'Brunei', 'BN', 1),
+(26, 'Bulgaria', 'BG', 1),
+(27, 'Burkina Faso', 'BF', 1),
+(28, 'Burundi', 'BI', 1),
+(29, 'Cambodia', 'KH', 1),
+(30, 'Cameroon', 'CM', 1),
+(31, 'Canada', 'CA', 1),
+(32, 'Cape Verde', 'CV', 1),
+(33, 'Central African Republic', 'CF', 1),
+(34, 'Chad', 'TD', 1),
+(35, 'Chile', 'CL', 1),
+(36, 'China, People s Republic of', 'CN', 1),
+(37, 'Colombia', 'CO', 1),
+(38, 'Comoros', 'KM', 1),
+(39, 'Congo, Democratic Republic of the (Congo ﾖ Kinshasa)', 'CD', 1),
+(40, 'Congo, Republic of the (Congo ﾖ Brazzaville)', 'CG', 1),
+(41, 'Costa Rica', 'CR', 1),
+(42, 'Cote d Ivoire (Ivory Coast)', 'CI', 1),
+(43, 'Croatia', 'HR', 1),
+(44, 'Cuba', 'CU', 1),
+(45, 'Cyprus', 'CY', 1),
+(46, 'Czech Republic', 'CZ', 1),
+(47, 'Denmark', 'DK', 1),
+(48, 'Djibouti', 'DJ', 1),
+(49, 'Dominica', 'DM', 1),
+(50, 'Dominican Republic', 'DO', 1),
+(51, 'Ecuador', 'EC', 1),
+(52, 'Egypt', 'EG', 1),
+(53, 'El Salvador', 'SV', 1),
+(54, 'Equatorial Guinea', 'GQ', 1),
+(55, 'Eritrea', 'ER', 1),
+(56, 'Estonia', 'EE', 1),
+(57, 'Ethiopia', 'ET', 1),
+(58, 'Fiji', 'FJ', 1),
+(59, 'Finland', 'FI', 1),
+(60, 'France', 'FR', 1),
+(61, 'Gabon', 'GA', 1),
+(62, 'Gambia, The', 'GM', 1),
+(63, 'Georgia', 'GE', 1),
+(64, 'Germany', 'DE', 1),
+(65, 'Ghana', 'GH', 1),
+(66, 'Greece', 'GR', 1),
+(67, 'Grenada', 'GD', 1),
+(68, 'Guatemala', 'GT', 1),
+(69, 'Guinea', 'GN', 1),
+(70, 'Guinea-Bissau', 'GW', 1),
+(71, 'Guyana', 'GY', 1),
+(72, 'Haiti', 'HT', 1),
+(73, 'Honduras', 'HN', 1),
+(74, 'Hungary', 'HU', 1),
+(75, 'Iceland', 'IS', 1),
+(76, 'India', 'IN', 1),
+(77, 'Indonesia', 'ID', 1),
+(78, 'Iran', 'IR', 1),
+(79, 'Iraq', 'IQ', 1),
+(80, 'Ireland', 'IE', 1),
+(81, 'Israel', 'IL', 1),
+(82, 'Italy', 'IT', 1),
+(83, 'Jamaica', 'JM', 1),
+(84, 'Japan', 'JP', 1),
+(85, 'Jordan', 'JO', 1),
+(86, 'Kazakhstan', 'KZ', 1),
+(87, 'Kenya', 'KE', 1),
+(88, 'Kiribati', 'KI', 1),
+(89, 'Korea, Democratic People s Republic of (North Korea)', 'KP', 1),
+(90, 'Korea, Republic of  (South Korea)', 'KR', 1),
+(91, 'Kuwait', 'KW', 1),
+(92, 'Kyrgyzstan', 'KG', 1),
+(93, 'Laos', 'LA', 1),
+(94, 'Latvia', 'LV', 1),
+(95, 'Lebanon', 'LB', 1),
+(96, 'Lesotho', 'LS', 1),
+(97, 'Liberia', 'LR', 1),
+(98, 'Libya', 'LY', 1),
+(99, 'Liechtenstein', 'LI', 1),
+(100, 'Lithuania', 'LT', 1),
+(101, 'Luxembourg', 'LU', 1),
+(102, 'Macedonia', 'MK', 1),
+(103, 'Madagascar', 'MG', 1),
+(104, 'Malawi', 'MW', 1),
+(105, 'Malaysia', 'MY', 1),
+(106, 'Maldives', 'MV', 1),
+(107, 'Mali', 'ML', 1),
+(108, 'Malta', 'MT', 1),
+(109, 'Marshall Islands', 'MH', 1),
+(110, 'Mauritania', 'MR', 1),
+(111, 'Mauritius', 'MU', 1),
+(112, 'Mexico', 'MX', 1),
+(113, 'Micronesia', 'FM', 1),
+(114, 'Moldova', 'MD', 1),
+(115, 'Monaco', 'MC', 1),
+(116, 'Mongolia', 'MN', 1),
+(117, 'Montenegro', 'ME', 1),
+(118, 'Morocco', 'MA', 1),
+(119, 'Mozambique', 'MZ', 1),
+(120, 'Myanmar (Burma)', 'MM', 1),
+(121, 'Namibia', 'NA', 1),
+(122, 'Nauru', 'NR', 1),
+(123, 'Nepal', 'NP', 1),
+(124, 'Netherlands', 'NL', 1),
+(125, 'New Zealand', 'NZ', 1),
+(126, 'Nicaragua', 'NI', 1),
+(127, 'Niger', 'NE', 1),
+(128, 'Nigeria', 'NG', 1),
+(129, 'Norway', 'NO', 1),
+(130, 'Oman', 'OM', 1),
+(131, 'Pakistan', 'PK', 1),
+(132, 'Palau', 'PW', 1),
+(133, 'Panama', 'PA', 1),
+(134, 'Papua New Guinea', 'PG', 1),
+(135, 'Paraguay', 'PY', 1),
+(136, 'Peru', 'PE', 1),
+(137, 'Philippines', 'PH', 1),
+(138, 'Poland', 'PL', 1),
+(139, 'Portugal', 'PT', 1),
+(140, 'Qatar', 'QA', 1),
+(141, 'Romania', 'RO', 1),
+(142, 'Russia', 'RU', 1),
+(143, 'Rwanda', 'RW', 1),
+(144, 'Saint Kitts and Nevis', 'KN', 1),
+(145, 'Saint Lucia', 'LC', 1),
+(146, 'Saint Vincent and the Grenadines', 'VC', 1),
+(147, 'Samoa', 'WS', 1),
+(148, 'San Marino', 'SM', 1),
+(149, 'Sao Tome and Principe', 'ST', 1),
+(150, 'Saudi Arabia', 'SA', 1),
+(151, 'Senegal', 'SN', 1),
+(152, 'Serbia', 'RS', 1),
+(153, 'Seychelles', 'SC', 1),
+(154, 'Sierra Leone', 'SL', 1),
+(155, 'Singapore', 'SG', 1),
+(156, 'Slovakia', 'SK', 1),
+(157, 'Slovenia', 'SI', 1),
+(158, 'Solomon Islands', 'SB', 1),
+(159, 'Somalia', 'SO', 1),
+(160, 'South Africa', 'ZA', 1),
+(161, 'Spain', 'ES', 1),
+(162, 'Sri Lanka', 'LK', 1),
+(163, 'Sudan', 'SD', 1),
+(164, 'Suriname', 'SR', 1),
+(165, 'Swaziland', 'SZ', 1),
+(166, 'Sweden', 'SE', 1),
+(167, 'Switzerland', 'CH', 1),
+(168, 'Syria', 'SY', 1),
+(169, 'Tajikistan', 'TJ', 1),
+(170, 'Tanzania', 'TZ', 1),
+(171, 'Thailand', 'TH', 1),
+(172, 'Timor-Leste (East Timor)', 'TL', 1),
+(173, 'Togo', 'TG', 1),
+(174, 'Tonga', 'TO', 1),
+(175, 'Trinidad and Tobago', 'TT', 1),
+(176, 'Tunisia', 'TN', 1),
+(177, 'Turkey', 'TR', 1),
+(178, 'Turkmenistan', 'TM', 1),
+(179, 'Tuvalu', 'TV', 1),
+(180, 'Uganda', 'UG', 1),
+(181, 'Ukraine', 'UA', 1),
+(182, 'United Arab Emirates', 'AE', 1),
+(183, 'United Kingdom', 'GB', 1),
+(184, 'United States', 'US', 1),
+(185, 'Uruguay', 'UY', 1),
+(186, 'Uzbekistan', 'UZ', 1),
+(187, 'Vanuatu', 'VU', 1),
+(188, 'Vatican City', 'VA', 1),
+(189, 'Venezuela', 'VE', 1),
+(190, 'Vietnam', 'VN', 1),
+(191, 'Yemen', 'YE', 1),
+(192, 'Zambia', 'ZM', 1),
+(193, 'Zimbabwe', 'ZW', 1),
+(194, 'Abkhazia', 'GE', 1),
+(195, 'China, Republic of (Taiwan)', 'TW', 1),
+(196, 'Nagorno-Karabakh', 'AZ', 1),
+(197, 'Northern Cyprus', 'CY', 1),
+(198, 'Pridnestrovie (Transnistria)', 'MD', 1),
+(199, 'Somaliland', 'SO', 1),
+(200, 'South Ossetia', 'GE', 1),
+(201, 'Ashmore and Cartier Islands', 'AU', 1),
+(202, 'Christmas Island', 'CX', 1),
+(203, 'Cocos (Keeling) Islands', 'CC', 1),
+(204, 'Coral Sea Islands', 'AU', 1),
+(205, 'Heard Island and McDonald Islands', 'HM', 1),
+(206, 'Norfolk Island', 'NF', 1),
+(207, 'New Caledonia', 'NC', 1),
+(208, 'French Polynesia', 'PF', 1),
+(209, 'Mayotte', 'YT', 1),
+(210, 'Saint Barthelemy', 'GP', 1),
+(211, 'Saint Martin', 'GP', 1),
+(212, 'Saint Pierre and Miquelon', 'PM', 1),
+(213, 'Wallis and Futuna', 'WF', 1),
+(214, 'French Southern and Antarctic Lands', 'TF', 1),
+(215, 'Clipperton Island', 'PF', 1),
+(216, 'Bouvet Island', 'BV', 1),
+(217, 'Cook Islands', 'CK', 1),
+(218, 'Niue', 'NU', 1),
+(219, 'Tokelau', 'TK', 1),
+(220, 'Guernsey', 'GG', 1),
+(221, 'Isle of Man', 'IM', 1),
+(222, 'Jersey', 'JE', 1),
+(223, 'Anguilla', 'AI', 1),
+(224, 'Bermuda', 'BM', 1),
+(225, 'British Indian Ocean Territory', 'IO', 1),
+(226, 'British Sovereign Base Areas', '', 1),
+(227, 'British Virgin Islands', 'VG', 1),
+(228, 'Cayman Islands', 'KY', 1),
+(229, 'Falkland Islands (Islas Malvinas)', 'FK', 1),
+(230, 'Gibraltar', 'GI', 1),
+(231, 'Montserrat', 'MS', 1),
+(232, 'Pitcairn Islands', 'PN', 1),
+(233, 'Saint Helena', 'SH', 1),
+(234, 'South Georgia and the South Sandwich Islands', 'GS', 1),
+(235, 'Turks and Caicos Islands', 'TC', 1),
+(236, 'Northern Mariana Islands', 'MP', 1),
+(237, 'Puerto Rico', 'PR', 1),
+(238, 'American Samoa', 'AS', 1),
+(239, 'Baker Island', 'UM', 1),
+(240, 'Guam', 'GU', 1),
+(241, 'Howland Island', 'UM', 1),
+(242, 'Jarvis Island', 'UM', 1),
+(243, 'Johnston Atoll', 'UM', 1),
+(244, 'Kingman Reef', 'UM', 1),
+(245, 'Midway Islands', 'UM', 1),
+(246, 'Navassa Island', 'UM', 1),
+(247, 'Palmyra Atoll', 'UM', 1),
+(248, 'U.S. Virgin Islands', 'VI', 1),
+(249, 'Wake Island', 'UM', 1),
+(250, 'Hong Kong', 'HK', 1),
+(251, 'Macau', 'MO', 1),
+(252, 'Faroe Islands', 'FO', 1),
+(253, 'Greenland', 'GL', 1),
+(254, 'French Guiana', 'GF', 1),
+(255, 'Guadeloupe', 'GP', 1),
+(256, 'Martinique', 'MQ', 1),
+(257, 'Reunion', 'RE', 1),
+(258, 'Aland', 'AX', 1),
+(259, 'Aruba', 'AW', 1),
+(260, 'Netherlands Antilles', 'AN', 1),
+(261, 'Svalbard', 'SJ', 1),
+(262, 'Ascension', 'AC', 1),
+(263, 'Tristan da Cunha', 'TA', 1),
+(264, 'Antarctica', 'AQ', 1),
+(265, 'Kosovo', 'CS', 1),
+(266, 'Palestinian Territories (Gaza Strip and West Bank)', 'PS', 1),
+(267, 'Western Sahara', 'EH', 1),
+(268, 'Australian Antarctic Territory', 'AQ', 1),
+(269, 'Ross Dependency', 'AQ', 1),
+(270, 'Peter I Island', 'AQ', 1),
+(271, 'Queen Maud Land', 'AQ', 1),
+(272, 'British Antarctic Territory', 'AQ', 1);
 
+-- --------------------------------------------------------
 
-/*!40000 ALTER TABLE `base_country` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table base_languages
-# ------------------------------------------------------------
-
+--
+-- Table structure for table `base_languages`
+--
 
 DROP TABLE IF EXISTS `base_languages`;
 CREATE TABLE `base_languages` (
   `id` int(11) NOT NULL,
   `language` varchar(250) NOT NULL,
   `locale` varchar(5) NOT NULL,
+  `hreflang` varchar(10) DEFAULT NULL,
   `code` varchar(2) NOT NULL,
   `base` tinyint(1) DEFAULT '0',
   `active` tinyint(1) DEFAULT '1',
@@ -305,363 +337,317 @@ CREATE TABLE `base_languages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `base_languages`
+-- Truncate table before insert `base_languages`
 --
 
-INSERT INTO `base_languages` (`id`, `language`, `locale`, `code`, `base`, `active`, `showonsite`) VALUES
-(1, 'Afrikaans', 'af_ZA', 'af', 0, 0, 0),
-(2, 'Albanian', 'sq_AL', 'sq', 0, 0, 0),
-(3, 'Arabic', 'ar_SA', 'ar', 0, 0, 0),
-(4, 'Armenian', '', 'hy', 0, 0, 0),
-(5, 'Basque', '', 'eu', 0, 0, 0),
-(6, 'Bengali', '', 'bn', 0, 0, 0),
-(7, 'Bulgarian', '', 'bg', 0, 0, 0),
-(8, 'Catalan', '', 'ca', 0, 0, 0),
-(9, 'Cambodian', '', 'km', 0, 0, 0),
-(10, 'Chinese (Mandarin)', '', 'zh', 0, 0, 0),
-(11, 'Croatian', '', 'hr', 0, 0, 0),
-(12, 'Czech', 'cz_CZ', 'cs', 0, 0, 0),
-(13, 'Danish', '', 'da', 0, 0, 0),
-(14, 'Dutch', 'nl_NL', 'nl', 0, 0, 0),
-(15, 'English', 'en_US', 'en', 1, 1, 1),
-(16, 'Estonian', '', 'et', 0, 0, 0),
-(17, 'Fiji', '', 'fj', 0, 0, 0),
-(18, 'Finnish', '', 'fi', 0, 0, 0),
-(19, 'French', '', 'fr', 0, 0, 0),
-(20, 'Georgian', '', 'ka', 0, 0, 0),
-(21, 'German', '', 'de', 0, 0, 0),
-(22, 'Greek', '', 'el', 0, 0, 0),
-(23, 'Gujarati', '', 'gu', 0, 0, 0),
-(24, 'Hebrew', '', 'he', 0, 0, 0),
-(25, 'Hindi', '', 'hi', 0, 0, 0),
-(26, 'Hungarian', '', 'hu', 0, 0, 0),
-(27, 'Icelandic', '', 'is', 0, 0, 0),
-(28, 'Indonesian', '', 'id', 0, 0, 0),
-(29, 'Irish', '', 'ga', 0, 0, 0),
-(30, 'Italian', 'it_IT', 'it', 0, 1, 1),
-(31, 'Japanese', '', 'ja', 0, 0, 0),
-(32, 'Javanese', '', 'jw', 0, 0, 0),
-(33, 'Korean', '', 'ko', 0, 0, 0),
-(34, 'Latin', '', 'la', 0, 0, 0),
-(35, 'Latvian', '', 'lv', 0, 0, 0),
-(36, 'Lithuanian', '', 'lt', 0, 0, 0),
-(37, 'Macedonian', '', 'mk', 0, 0, 0),
-(38, 'Malay', '', 'ms', 0, 0, 0),
-(39, 'Malayalam', '', 'ml', 0, 0, 0),
-(40, 'Maltese', '', 'mt', 0, 0, 0),
-(41, 'Maori', '', 'mi', 0, 0, 0),
-(42, 'Marathi', '', 'mr', 0, 0, 0),
-(43, 'Mongolian', '', 'mn', 0, 0, 0),
-(44, 'Nepali', '', 'ne', 0, 0, 0),
-(45, 'Norwegian', '', 'no', 0, 0, 0),
-(46, 'Persian', '', 'fa', 0, 0, 0),
-(47, 'Polish', '', 'pl', 0, 0, 0),
-(48, 'Portuguese', '', 'pt', 0, 0, 0),
-(49, 'Punjabi', '', 'pa', 0, 0, 0),
-(50, 'Quechua', '', 'qu', 0, 0, 0),
-(51, 'Romanian', '', 'ro', 0, 0, 0),
-(52, 'Russian', '', 'ru', 0, 0, 0),
-(53, 'Samoan', '', 'sm', 0, 0, 0),
-(54, 'Serbian', '', 'sr', 0, 0, 0),
-(55, 'Slovak', '', 'sk', 0, 0, 0),
-(56, 'Slovenian', '', 'sl', 0, 0, 0),
-(57, 'Spanish', '', 'es', 0, 0, 0),
-(58, 'Swahili', '', 'sw', 0, 0, 0),
-(59, 'Swedish ', '', 'sv', 0, 0, 0),
-(60, 'Tamil', '', 'ta', 0, 0, 0),
-(61, 'Tatar', '', 'tt', 0, 0, 0),
-(62, 'Telugu', '', 'te', 0, 0, 0),
-(63, 'Thai', '', 'th', 0, 0, 0),
-(64, 'Tibetan', '', 'bo', 0, 0, 0),
-(65, 'Tonga', '', 'to', 0, 0, 0),
-(66, 'Turkish', '', 'tr', 0, 0, 0),
-(67, 'Ukranian', '', 'uk', 0, 0, 0),
-(68, 'Urdu', '', 'ur', 0, 0, 0),
-(69, 'Uzbek', '', 'uz', 0, 0, 0),
-(70, 'Vietnamese', '', 'vi', 0, 0, 0),
-(71, 'Welsh', '', 'cy', 0, 0, 0),
-(72, 'Xhosa', '', 'xh', 0, 0, 0),
-(73, 'Kurdish', '', 'ku', 0, 0, 0);
+TRUNCATE TABLE `base_languages`;
+--
+-- Dumping data for table `base_languages`
+--
 
-ALTER TABLE `base_languages`
-  ADD PRIMARY KEY (`id`);
+INSERT INTO `base_languages` (`id`, `language`, `locale`, `hreflang`, `code`, `base`, `active`, `showonsite`) VALUES
+(1, 'Afrikaans', 'af_ZA', '', 'af', 0, 0, 0),
+(2, 'Albanian', 'sq_AL', '', 'sq', 0, 0, 0),
+(3, 'Arabic', 'ar_SA', '', 'ar', 0, 0, 0),
+(4, 'Armenian', '', '', 'hy', 0, 0, 0),
+(5, 'Basque', '', '', 'eu', 0, 0, 0),
+(6, 'Bengali', '', '', 'bn', 0, 0, 0),
+(7, 'Bulgarian', '', '', 'bg', 0, 0, 0),
+(8, 'Catalan', '', '', 'ca', 0, 0, 0),
+(9, 'Cambodian', '', '', 'km', 0, 0, 0),
+(10, 'Chinese (Mandarin)', '', '', 'zh', 0, 0, 0),
+(11, 'Croatian', '', '', 'hr', 0, 0, 0),
+(12, 'Czech', 'cz_CZ', '', 'cs', 0, 0, 0),
+(13, 'Danish', '', '', 'da', 0, 0, 0),
+(14, 'Dutch', 'nl_NL', '', 'nl', 0, 0, 0),
+(15, 'English', 'en_US', '', 'en', 1, 1, 1),
+(16, 'Estonian', '', '', 'et', 0, 0, 0),
+(17, 'Fiji', '', '', 'fj', 0, 0, 0),
+(18, 'Finnish', '', '', 'fi', 0, 0, 0),
+(19, 'French', '', '', 'fr', 0, 0, 0),
+(20, 'Georgian', '', '', 'ka', 0, 0, 0),
+(21, 'German', '', '', 'de', 0, 0, 0),
+(22, 'Greek', '', '', 'el', 0, 0, 0),
+(23, 'Gujarati', '', '', 'gu', 0, 0, 0),
+(24, 'Hebrew', '', '', 'he', 0, 0, 0),
+(25, 'Hindi', '', '', 'hi', 0, 0, 0),
+(26, 'Hungarian', '', '', 'hu', 0, 0, 0),
+(27, 'Icelandic', '', '', 'is', 0, 0, 0),
+(28, 'Indonesian', '', '', 'id', 0, 0, 0),
+(29, 'Irish', '', '', 'ga', 0, 0, 0),
+(30, 'Italian', 'it_IT', '', 'it', 0, 1, 1),
+(31, 'Japanese', '', '', 'ja', 0, 0, 0),
+(32, 'Javanese', '', '', 'jw', 0, 0, 0),
+(33, 'Korean', '', '', 'ko', 0, 0, 0),
+(34, 'Latin', '', '', 'la', 0, 0, 0),
+(35, 'Latvian', '', '', 'lv', 0, 0, 0),
+(36, 'Lithuanian', '', '', 'lt', 0, 0, 0),
+(37, 'Macedonian', '', '', 'mk', 0, 0, 0),
+(38, 'Malay', '', '', 'ms', 0, 0, 0),
+(39, 'Malayalam', '', '', 'ml', 0, 0, 0),
+(40, 'Maltese', '', '', 'mt', 0, 0, 0),
+(41, 'Maori', '', '', 'mi', 0, 0, 0),
+(42, 'Marathi', '', '', 'mr', 0, 0, 0),
+(43, 'Mongolian', '', '', 'mn', 0, 0, 0),
+(44, 'Nepali', '', '', 'ne', 0, 0, 0),
+(45, 'Norwegian', '', '', 'no', 0, 0, 0),
+(46, 'Persian', '', '', 'fa', 0, 0, 0),
+(47, 'Polish', '', '', 'pl', 0, 0, 0),
+(48, 'Portuguese', 'pt_PT', '', 'pt', 0, 1, 1),
+(49, 'Punjabi', '', '', 'pa', 0, 0, 0),
+(50, 'Quechua', '', '', 'qu', 0, 0, 0),
+(51, 'Romanian', '', '', 'ro', 0, 0, 0),
+(52, 'Russian', '', '', 'ru', 0, 0, 0),
+(53, 'Samoan', '', '', 'sm', 0, 0, 0),
+(54, 'Serbian', '', '', 'sr', 0, 0, 0),
+(55, 'Slovak', '', '', 'sk', 0, 0, 0),
+(56, 'Slovenian', '', '', 'sl', 0, 0, 0),
+(57, 'Spanish', '', '', 'es', 0, 0, 0),
+(58, 'Swahili', '', '', 'sw', 0, 0, 0),
+(59, 'Swedish ', '', '', 'sv', 0, 0, 0),
+(60, 'Tamil', '', '', 'ta', 0, 0, 0),
+(61, 'Tatar', '', '', 'tt', 0, 0, 0),
+(62, 'Telugu', '', '', 'te', 0, 0, 0),
+(63, 'Thai', '', '', 'th', 0, 0, 0),
+(64, 'Tibetan', '', '', 'bo', 0, 0, 0),
+(65, 'Tonga', '', '', 'to', 0, 0, 0),
+(66, 'Turkish', '', '', 'tr', 0, 0, 0),
+(67, 'Ukranian', '', '', 'uk', 0, 0, 0),
+(68, 'Urdu', '', '', 'ur', 0, 0, 0),
+(69, 'Uzbek', '', '', 'uz', 0, 0, 0),
+(70, 'Vietnamese', '', '', 'vi', 0, 0, 0),
+(71, 'Welsh', '', '', 'cy', 0, 0, 0),
+(72, 'Xhosa', '', '', 'xh', 0, 0, 0),
+(73, 'Kurdish', '', '', 'ku', 0, 0, 0);
 
-ALTER TABLE `base_languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;SET FOREIGN_KEY_CHECKS=1;
+-- --------------------------------------------------------
 
-LOCK TABLES `base_languages` WRITE;
-/*!40000 ALTER TABLE `base_languages` DISABLE KEYS */;
-
-INSERT INTO `base_languages` (`id`, `language`, `locale`, `code`, `base`, `active`)
-VALUES
-  (1,'English','en_US','en',1,1),
-  (2,'Italiano','it_IT','it',0,1),
-  (3,'French','fr_FR','fr',0,1),
-  (4,'Spanish','es_ES','es',0,1),
-  (5,'Dutch','nl_NL','nl',0,1),
-  (6,'German','de_DE','de',0,1),
-  (7,'Serbian','sr_CS','rs',0,1);
-
-/*!40000 ALTER TABLE `base_languages` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table base_province
-# ------------------------------------------------------------
+--
+-- Table structure for table `base_province`
+--
 
 DROP TABLE IF EXISTS `base_province`;
-
 CREATE TABLE `base_province` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `region_id` int(11) DEFAULT NULL,
   `country_id` int(11) DEFAULT NULL,
   `name` varchar(200) DEFAULT NULL,
-  `code` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `country_id_idx` (`country_id`),
-  KEY `region_id_idx` (`region_id`),
-  CONSTRAINT `base_province_country_id_countries_country_id` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`) ON DELETE CASCADE,
-  CONSTRAINT `base_province_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `base_region` (`id`) ON DELETE CASCADE
+  `code` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `base_province` WRITE;
-/*!40000 ALTER TABLE `base_province` DISABLE KEYS */;
+--
+-- Truncate table before insert `base_province`
+--
 
-INSERT INTO `base_province` (`id`, `region_id`, `country_id`, `name`, `code`)
-VALUES
-  (1,19,82,'Agrigento','AG'),
-  (2,2,82,'Alessandria','AL'),
-  (3,10,82,'Ancona','AN'),
-  (4,1,82,'Aosta','AO'),
-  (5,9,82,'Arezzo','AR'),
-  (6,10,82,'Ascoli Piceno','AP'),
-  (7,2,82,'Asti','AT'),
-  (8,16,82,'Avellino','AV'),
-  (9,15,82,'Bari','BA'),
-  (10,5,82,'Belluno','BL'),
-  (11,16,82,'Benevento','BN'),
-  (12,3,82,'Bergamo','BG'),
-  (13,2,82,'Biella','BI'),
-  (14,7,82,'Bologna','BO'),
-  (15,4,82,'Bolzano - Bozen','BZ'),
-  (16,3,82,'Brescia','BS'),
-  (17,15,82,'Brindisi','BR'),
-  (18,20,82,'Cagliari','CA'),
-  (19,19,82,'Caltanissetta','CL'),
-  (20,13,82,'Campobasso','CB'),
-  (21,16,82,'Caserta','CE'),
-  (22,19,82,'Catania','CT'),
-  (23,18,82,'Catanzaro','CZ'),
-  (24,12,82,'Chieti','CH'),
-  (25,3,82,'Como','CO'),
-  (26,18,82,'Cosenza','CS'),
-  (27,3,82,'Cremona','CR'),
-  (28,18,82,'Crotone','KR'),
-  (29,2,82,'Cuneo','CN'),
-  (30,19,82,'Enna','EN'),
-  (31,7,82,'Ferrara','FE'),
-  (32,9,82,'Firenze','FI'),
-  (33,15,82,'Foggia','FG'),
-  (34,7,82,'Forlì-Cesena','FC'),
-  (35,14,82,'Frosinone','FR'),
-  (36,8,82,'Genova','GE'),
-  (37,6,82,'Gorizia','GO'),
-  (38,9,82,'Grosseto','GR'),
-  (39,8,82,'Imperia','IM'),
-  (40,13,82,'Isernia','IS'),
-  (41,12,82,'L\'Aquila','AQ'),
-  (42,8,82,'La Spezia','SP'),
-  (43,14,82,'Latina','LT'),
-  (44,15,82,'Lecce','LE'),
-  (45,3,82,'Lecco','LC'),
-  (46,9,82,'Livorno','LI'),
-  (47,3,82,'Lodi','LO'),
-  (48,9,82,'Lucca','LU'),
-  (49,10,82,'Macerata','MC'),
-  (50,3,82,'Mantova','MN'),
-  (51,9,82,'Massa - Carrara','MS'),
-  (52,17,82,'Matera','MT'),
-  (53,19,82,'Messina','ME'),
-  (54,3,82,'Milano','MI'),
-  (55,7,82,'Modena','MO'),
-  (56,16,82,'Napoli','NA'),
-  (57,2,82,'Novara','NO'),
-  (58,20,82,'Nuoro','NU'),
-  (59,20,82,'Oristano','OR'),
-  (60,5,82,'Padova','PD'),
-  (61,19,82,'Palermo','PA'),
-  (62,7,82,'Parma','PR'),
-  (63,3,82,'Pavia','PV'),
-  (64,11,82,'Perugia','PG'),
-  (65,10,82,'Pesaro e Urbino','PU'),
-  (66,12,82,'Pescara','PE'),
-  (67,7,82,'Piacenza','PC'),
-  (68,9,82,'Pisa','PI'),
-  (69,9,82,'Pistoia','PT'),
-  (70,6,82,'Pordenone','PN'),
-  (71,17,82,'Potenza','PZ'),
-  (72,9,82,'Prato','PO'),
-  (73,19,82,'Ragusa','RG'),
-  (74,7,82,'Ravenna','RA'),
-  (75,18,82,'Reggio Calabria','RC'),
-  (76,7,82,'Reggio Emilia','RE'),
-  (77,14,82,'Rieti','RI'),
-  (78,7,82,'Rimini','RN'),
-  (79,14,82,'Roma','RM'),
-  (80,5,82,'Rovigo','RO'),
-  (81,16,82,'Salerno','SA'),
-  (82,20,82,'Sassari','SS'),
-  (83,8,82,'Savona','SV'),
-  (84,9,82,'Siena','SI'),
-  (85,19,82,'Siracusa','SR'),
-  (86,3,82,'Sondrio','SO'),
-  (87,15,82,'Taranto','TA'),
-  (88,12,82,'Teramo','TE'),
-  (89,11,82,'Terni','TR'),
-  (90,2,82,'Torino','TO'),
-  (91,19,82,'Trapani','TP'),
-  (92,4,82,'Trento','TN'),
-  (93,5,82,'Treviso','TV'),
-  (94,6,82,'Trieste','TS'),
-  (95,6,82,'Udine','UD'),
-  (96,3,82,'Varese','VA'),
-  (97,5,82,'Venezia','VE'),
-  (98,2,82,'Verbano - Cusio','VB'),
-  (99,2,82,'Vercelli','VC'),
-  (100,5,82,'Verona','VR'),
-  (101,18,82,'Vibo - Valentia','VV'),
-  (102,5,82,'Vicenza','VI'),
-  (103,14,82,'Viterbo','VT'),
-  (104,20,82,'Olbia-Tempio','OT'),
-  (105,20,82,'Carbonia-Iglesias','CI'),
-  (106,20,82,'Medio Campidano','VS'),
-  (107,3,82,'Monza e della Brianza','MB');
+TRUNCATE TABLE `base_province`;
+-- --------------------------------------------------------
 
-/*!40000 ALTER TABLE `base_province` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table base_region
-# ------------------------------------------------------------
+--
+-- Table structure for table `base_region`
+--
 
 DROP TABLE IF EXISTS `base_region`;
-
 CREATE TABLE `base_region` (
   `id` int(11) NOT NULL,
   `country_id` int(11) DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `country_id` (`country_id`),
-  CONSTRAINT `base_region_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `base_country` (`id`) ON DELETE CASCADE
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `base_region` WRITE;
-/*!40000 ALTER TABLE `base_region` DISABLE KEYS */;
+--
+-- Truncate table before insert `base_region`
+--
 
-INSERT INTO `base_region` (`id`, `country_id`, `name`)
-VALUES
-  (1,82,'Valle d\'Aosta'),
-  (2,82,'Piemonte'),
-  (3,82,'Lombardia'),
-  (4,82,'Trentino-Alto Adige'),
-  (5,82,'Veneto'),
-  (6,82,'Friuli-Venezia Giulia'),
-  (7,82,'Emilia-Romagna'),
-  (8,82,'Liguria'),
-  (9,82,'Toscana'),
-  (10,82,'Marche'),
-  (11,82,'Umbria'),
-  (12,82,'Abruzzo'),
-  (13,82,'Molise'),
-  (14,82,'Lazio'),
-  (15,82,'Puglia'),
-  (16,82,'Campania'),
-  (17,82,'Basilicata'),
-  (18,82,'Calabria'),
-  (19,82,'Sicilia'),
-  (20,82,'Sardegna'),
-  (21,82,'San Marino');
+TRUNCATE TABLE `base_region`;
+--
+-- Dumping data for table `base_region`
+--
 
-/*!40000 ALTER TABLE `base_region` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `base_region` (`id`, `country_id`, `name`) VALUES
+(1, 82, 'Valle d Aosta'),
+(2, 82, 'Piemonte'),
+(3, 82, 'Lombardia'),
+(4, 82, 'Trentino-Alto Adige'),
+(5, 82, 'Veneto'),
+(6, 82, 'Friuli-Venezia Giulia'),
+(7, 82, 'Emilia-Romagna'),
+(8, 82, 'Liguria'),
+(9, 82, 'Toscana'),
+(10, 82, 'Marche'),
+(11, 82, 'Umbria'),
+(12, 82, 'Abruzzo'),
+(13, 82, 'Molise'),
+(14, 82, 'Lazio'),
+(15, 82, 'Puglia'),
+(16, 82, 'Campania'),
+(17, 82, 'Basilicata'),
+(18, 82, 'Calabria'),
+(19, 82, 'Sicilia'),
+(20, 82, 'Sardegna'),
+(21, 82, 'San Marino');
 
+-- --------------------------------------------------------
 
-# Dump of table base_settings
-# ------------------------------------------------------------
+--
+-- Table structure for table `base_settings`
+--
 
 DROP TABLE IF EXISTS `base_settings`;
-
 CREATE TABLE `base_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `module` varchar(255) NOT NULL,
   `parameter` varchar(255) NOT NULL,
-  `value` text,
-  PRIMARY KEY (`id`)
+  `value` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `base_settings` WRITE;
-/*!40000 ALTER TABLE `base_settings` DISABLE KEYS */;
+-- --------------------------------------------------------
 
-INSERT INTO `base_settings` (`id`, `module`, `parameter`, `value`)
-VALUES
-  (9,'Product','recordsperpage','5'),
-  (10,'Product','attributes','[\"1\",\"12\",\"2\"]'),
-  (11,'Cms','defaultlayout','1column'),
-  (12,'Cms','postperpage','5'),
-  (13,'Cms','recordsperpage','10'),
-  (36,'Base','active','1'),
-  (37,'Base','iscompressed','0'),
-  (38,'Base','name','Shine Software'),
-  (39,'Base','email','info@shinesoftware.com'),
-  (40,'Base','slogan',''),
-  (41,'Base','metatitle',''),
-  (42,'Base','metadescription',''),
-  (43,'Base','metakeywords',''),
-  (44,'Base','headscript',''),
-  (45,'Base','bodyscript',''),
-  (46,'Base','ganalytics',''),
-  (47,'Customer','recordsperpage','2'),
-  (48,'Customer','attachments','/documents/customers/');
-
-/*!40000 ALTER TABLE `base_settings` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table base_status
-# ------------------------------------------------------------
+--
+-- Table structure for table `base_status`
+--
 
 DROP TABLE IF EXISTS `base_status`;
-
 CREATE TABLE `base_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `status` varchar(200) NOT NULL,
   `section` varchar(200) DEFAULT NULL,
   `public` tinyint(1) DEFAULT '1',
-  `code` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
+  `code` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `base_status` WRITE;
-/*!40000 ALTER TABLE `base_status` DISABLE KEYS */;
+--
+-- Truncate table before insert `base_status`
+--
 
-INSERT INTO `base_status` (`id`, `status`, `section`, `public`, `code`)
-VALUES
-  (1,'Active','generic',1,'active'),
-  (2,'Expired','generic',1,'expired'),
-  (3,'Processing','generic',1,'processing'),
-  (4,'Deleted','generic',1,'deleted'),
-  (5,'Complete','generic',1,'complete'),
-  (6,'Suspended','generic',1,'suspended'),
-  (7,'Closed','generic',1,'closed');
+TRUNCATE TABLE `base_status`;
+--
+-- Dumping data for table `base_status`
+--
 
-/*!40000 ALTER TABLE `base_status` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `base_status` (`id`, `status`, `section`, `public`, `code`) VALUES
+(1, 'Deleted', 'generic', 1, 'deleted'),
+(2, 'Suspended', 'generic', 1, 'suspended'),
+(3, 'Active', 'generic', 1, 'active'),
+(4, 'Active', 'domains', 1, 'active'),
+(5, 'Expired', 'domains', 1, 'expired'),
+(6, 'Processing', 'domains', 1, 'processing'),
+(7, 'Redenption period', 'epp_domains', 1, 'redemption'),
+(8, 'Registrar hold', 'epp_domains', 1, 'hold'),
+(9, 'To be Paid', 'orders', 1, 'tobepaid'),
+(10, 'Expired', 'orders', 1, 'expired'),
+(12, 'Active', 'customers', 1, 'active'),
+(13, 'Suspended', 'customers', 1, 'suspended'),
+(14, 'Deleted', 'customers', 1, 'deleted'),
+(15, 'Active', 'servers', 1, 'active'),
+(16, 'Suspended', 'servers', 1, 'suspended'),
+(17, 'Deleted', 'servers', 1, 'deleted'),
+(18, 'Pending', 'orders', 1, 'pending'),
+(19, 'Processing', 'orders', 1, 'processing'),
+(20, 'Deleted', 'orders', 1, 'deleted'),
+(21, 'Complete', 'orders', 1, 'complete'),
+(22, 'Expecting a reply', 'tickets', 1, 'expectingreply'),
+(23, 'Processing', 'tickets', 1, 'processing'),
+(24, 'Solved', 'tickets', 1, 'solved'),
+(25, 'Closed', 'tickets', 1, 'closed'),
+(26, 'Active', 'domains_tasks', 1, 'active'),
+(27, 'Processing', 'domains_tasks', 1, 'processing'),
+(28, 'Deleted', 'domains', 1, 'deleted'),
+(29, 'Suspended', 'domains', 1, 'suspended'),
+(30, 'Closed', 'orders', 1, 'closed'),
+(31, 'Complete', 'domains_tasks', 1, 'complete'),
+(32, 'Future Release', 'tickets', 1, 'future-release'),
+(33, 'Changed', 'orders', 1, 'changed'),
+(34, 'Paid', 'orders', 1, 'paid');
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `base_country`
+--
+ALTER TABLE `base_country`
+  ADD PRIMARY KEY (`id`);
 
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+--
+-- Indexes for table `base_languages`
+--
+ALTER TABLE `base_languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `base_province`
+--
+ALTER TABLE `base_province`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `country_id_idx` (`country_id`),
+  ADD KEY `region_id_idx` (`region_id`);
+
+--
+-- Indexes for table `base_region`
+--
+ALTER TABLE `base_region`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `country_id` (`country_id`);
+
+--
+-- Indexes for table `base_settings`
+--
+ALTER TABLE `base_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `base_status`
+--
+ALTER TABLE `base_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `base_country`
+--
+ALTER TABLE `base_country`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
+--
+-- AUTO_INCREMENT for table `base_languages`
+--
+ALTER TABLE `base_languages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+--
+-- AUTO_INCREMENT for table `base_province`
+--
+ALTER TABLE `base_province`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `base_settings`
+--
+ALTER TABLE `base_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+--
+-- AUTO_INCREMENT for table `base_status`
+--
+ALTER TABLE `base_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `base_province`
+--
+ALTER TABLE `base_province`
+  ADD CONSTRAINT `base_province_country_id_countries_country_id` FOREIGN KEY (`country_id`) REFERENCES `base_country` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `base_province_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `base_region` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `base_region`
+--
+ALTER TABLE `base_region`
+  ADD CONSTRAINT `base_region_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `base_country` (`id`) ON DELETE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
