@@ -50,7 +50,7 @@ To get the application running, perform the following steps:
     [
         {
             "type": "vcs",
-            "url": "https://github.com/shinesoftware-zf-modules/Base"
+            "url": "https://shinesoftware@bitbucket.org/shinesoftware/base.git"
         }
     ],
 ```
