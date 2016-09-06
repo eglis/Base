@@ -23,34 +23,41 @@ use Zend\View\Model\ViewModel;
  */
 class SearchController extends AbstractActionController
 {
-	protected $theServices = array();
-	protected $translator;
-	
-	/**
-	 * preDispatch event of the page
-	 *
-	 * (non-PHPdoc)
-	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
-	 */
-	public function onDispatch(\Zend\Mvc\MvcEvent $e){
-		$this->translator = $e->getApplication()->getServiceManager()->get('translator');
-	
-		return parent::onDispatch( $e );
-	}
-	
-	public function __construct($service)
+    /**
+     * @var array
+     */
+    protected $theServices = array();
+
+    /**
+     * @var
+     */
+    protected $translator;
+
+    /**
+     * @var
+     */
+    protected $config;
+
+    /**
+     * SearchController constructor.
+     * @param $service
+     * @param $translator
+     * @param $config
+     */
+	public function __construct($service, $translator, $config)
 	{
 		$this->theServices[] = $service;
+        $this->translator = $translator;
+        $this->config = $config;
 	}
     
     /**
-     * Search the page by the name
+     * Search the records
      */
     public function doAction ()
     {
-    	$result = array();
-    	$i = 0;
-    	 
+    	$records = array();
+
     	$searchString = $this->params()->fromRoute('query');
     	$searchString = trim($searchString);
 

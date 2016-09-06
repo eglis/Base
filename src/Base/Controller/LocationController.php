@@ -24,23 +24,30 @@ use Zend\View\Model\ViewModel;
  */
 class LocationController extends AbstractActionController
 {
+    /**
+     * @var CountryServiceInterface
+     */
 	protected $country;
+
+    /**
+     * @var RegionServiceInterface
+     */
 	protected $region;
+
+    /**
+     * @var ProvinceServiceInterface
+     */
 	protected $province;
-	protected $translator;
-	
-	/**
-	 * preDispatch event of the page
-	 *
-	 * (non-PHPdoc)
-	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
-	 */
-	public function onDispatch(\Zend\Mvc\MvcEvent $e){
-		$this->translator = $e->getApplication()->getServiceManager()->get('translator');
-		return parent::onDispatch( $e );
-	}
-	
-	public function __construct(CountryServiceInterface $country, RegionServiceInterface $region, ProvinceServiceInterface $province)
+
+    /**
+     * LocationController constructor.
+     * @param CountryServiceInterface $country
+     * @param RegionServiceInterface $region
+     * @param ProvinceServiceInterface $province
+     */
+	public function __construct(CountryServiceInterface $country,
+                                RegionServiceInterface $region,
+                                ProvinceServiceInterface $province)
 	{
 		$this->country = $country;
 		$this->region = $region;

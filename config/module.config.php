@@ -143,7 +143,7 @@ return array(
             'search' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/search/[query/:query]',
+                    'route' => '/search',
                     'constraints' => array(
                         'query' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
@@ -232,6 +232,7 @@ return array(
             'Base\Controller\LanguagesAdmin' => 'Base\Factory\LanguagesControllerFactory',
             'Base\Controller\LanguageSwitcher' => 'Base\Factory\LanguageSwitcherControllerFactory',
             'Base\Controller\Location' => 'Base\Factory\LocationControllerFactory',
+            'Base\Controller\Search' => 'Base\Factory\SearchControllerFactory',
             'BaseSettings\Controller\Index' => 'BaseSettings\Factory\IndexControllerFactory',
         )
     ),
