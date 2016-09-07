@@ -143,7 +143,7 @@ return array(
             'search' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/search',
+                    'route' => '/search[/:query]',
                     'constraints' => array(
                         'query' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),
@@ -303,7 +303,6 @@ return array(
             'languagesonsite' => 'Base\Factory\LanguagesOnSiteHelperFactory',
             'settings' => 'Base\Factory\SettingsHelperFactory',
             'userinfo' => 'Base\Factory\UserHelperFactory',
-
         ),
     ),
     'view_manager' => array(
@@ -317,7 +316,6 @@ return array(
         ),
         'template_map' => array(
             'layout/layout' => __DIR__ . '/../view/layout/frontend.phtml',
-
             'goalioforgotpassword' => __DIR__ . '/../view',
             'zfc-user/user/login' => __DIR__ . '/../view/zfc-user/user/login.phtml',
             'phly-contact/contact/index' => __DIR__ . '/../view/phly-contact/contact/index.phtml',
