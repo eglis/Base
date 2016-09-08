@@ -86,7 +86,7 @@ class LanguagesService implements LanguagesServiceInterface
      */
     public function languagelist(){
         $data = array();
-        $languages = $this->findActive();
+        $languages = $this->findAll();
         foreach ($languages as $language){
             $data[$language->getId()] = $language->getLanguage();
         }

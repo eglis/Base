@@ -15,22 +15,21 @@
                 ->render();
          ?>
          <ul class="nav navbar-nav navbar-right">
+             <li>
+                 <?php echo $this->languagesonsite() ?>
+             </li>
          <?php if($this->zfcUserIdentity()): ?>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> <?php echo $this->translate('My profile') ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/user/logout" title="<?php echo $this->translate('Sign Out') ?>"><i class="fa fa-sign-out"></i> <?php echo $this->translate('Sign Out') ?></a></li>
-                    </ul>
-                </li>
-            
+             <li class="dropdown">
+                 <a href="/user"><?php echo $this->translate('Preferences') ?></a>
+             </li>
+             <li class="dropdown">
+                 <a href="/user/logout"><?php echo $this->translate('Sign Out') ?></a>
+             </li>
          <?php else: ?>
                 <li class="dropdown">
                     <a href="/user"><?php echo $this->translate('Log In') ?></a>
                 </li>
          <?php endif; ?>
-             <li>
-                 <?php echo $this->languagesonsite() ?>
-             </li>
              <li>
                  <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">

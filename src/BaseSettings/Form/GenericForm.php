@@ -26,20 +26,31 @@ class GenericForm extends Form
                         )
                 )
         ));
-        
+
         $this->add(array (
-                'type' => 'Zend\Form\Element\Select',
-                'name' => 'iscompressed',
-                'attributes' => array (
-                        'class' => 'form-control'
-                ),
-                'options' => array (
-                        'label' => _('Is HTML code compressed?'),
-                        'value_options' => array (
-                                '1' => _('Yes, compress the html content of the page'),
-                                '0' => _('No, it is not'),
-                        )
+            'type' => 'Base\Form\Element\Languages',
+            'name' => 'defaultlanguage',
+            'attributes' => array (
+                'class' => 'form-control'
+            ),
+            'options' => array (
+                'label' => _('Default language'),
+            )
+        ));
+
+        $this->add(array (
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'iscompressed',
+            'attributes' => array (
+                'class' => 'form-control'
+            ),
+            'options' => array (
+                'label' => _('Is HTML code compressed?'),
+                'value_options' => array (
+                    '1' => _('Yes, compress the html content of the page'),
+                    '0' => _('No, it is not'),
                 )
+            )
         ));
         
         $this->add(array (
