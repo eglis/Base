@@ -89,6 +89,13 @@ return array(
                 'privilege' => 'list',
                 'order' => 0
             ),
+            array (
+                'label' => _('Admin'),
+                'route' => 'zfcadmin',
+                'resource' => 'adminmenu',
+                'icon' => 'fa fa-tachometer',
+                'privilege' => 'list'
+            ),
         ),
         'admin' => array(
             'settings' => array(
@@ -269,8 +276,6 @@ return array(
                 $logger->addWriter($writer);
                 return $logger;
             },
-
-            'goalioforgotpassword_forgot_form' => 'Base\Factory\ForgotFactory',
 
             'navigation' => function ($sm) {
                 $navigation = new \Zend\Navigation\Service\DefaultNavigationFactory;

@@ -19,7 +19,7 @@
         			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><?php echo $this->translate('Additional information') ?></a>
       			</h4>
     		</div>
-    		<div id="collapseOne" class="panel-collapse collapse">
+    		<div id="collapseOne" class="panel-collapse">
       			<div class="panel-body">
 
 					<h5><?php echo get_class($this->exception); ?></h5>
@@ -68,11 +68,11 @@
 					    ?>
 					</ul>
 					<?php endif; ?>
-					
+
 					<?php else: ?>
-					
-						<h3>No Exception available</h3>
-					
+                        <h2><?php echo get_class($this->exception); ?></h2>
+                        <strong><?php echo $this->escapeHtml($this->exception->getMessage()) ?></strong>
+						<pre><?php echo $this->exception->getTraceAsString() ?></pre>
 					<?php endif ?>
 				</div>
 			</div>
