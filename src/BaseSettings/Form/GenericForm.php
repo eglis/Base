@@ -92,7 +92,18 @@ class GenericForm extends Form
                 )
             )
         ));
-        
+
+
+        $this->add(array (
+            'name' => 'domain',
+            'attributes' => array (
+                'class' => 'form-control',
+            ),
+            'options' => array (
+                'label' => _('Domain'),
+            )
+        ));
+
         $this->add(array (
                 'name' => 'email',
                 'attributes' => array (
