@@ -52,16 +52,45 @@ class GenericForm extends Form
                 )
             )
         ));
-        
+
         $this->add(array (
-                'name' => 'name',
-                'attributes' => array (
-                        'class' => 'form-control',
-                		'value' => 'My application'
-                ),
-                'options' => array (
-                        'label' => _('Name'),
+            'name' => 'name',
+            'attributes' => array (
+                'class' => 'form-control',
+                'value' => 'My application'
+            ),
+            'options' => array (
+                'label' => _('Name'),
+            )
+        ));
+
+
+        $this->add(array (
+            'name' => 'googlemapapikey',
+            'attributes' => array (
+                'class' => 'form-control',
+            ),
+            'options' => array (
+                'label' => _('Google MAP API Key'),
+            )
+        ));
+
+
+        $this->add(array (
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'googlemapzoom',
+            'attributes' => array (
+                'class' => 'form-control'
+            ),
+            'options' => array (
+                'label' => _('Map Zoom Level'),
+                'value_options' => array (
+                    5 => _('Continent'),
+                    10 => _('City'),
+                    15 => _('Streets'),
+                    20 => _('Buildings'),
                 )
+            )
         ));
         
         $this->add(array (

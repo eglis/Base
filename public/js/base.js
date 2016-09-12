@@ -45,6 +45,10 @@
  * Created by shinesoftware on 06/08/16.
  */
 
+/* http://www.bootstrap-switch.org/ */
+$("[type=checkbox]").bootstrapSwitch();
+
+
 // Auto Search
 $('#searchbox').typeahead({
     name: 'searchbox',
