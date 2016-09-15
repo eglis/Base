@@ -12,7 +12,7 @@
     "province",
     "languages"
   ],
-  "homepage": "https://shinedev@bitbucket.org/shinesoftware/base.git",
+  "homepage": "https://github.com/shineisp/Base.git",
   "authors": [
     {
       "name": "Michelangelo Turillo",
@@ -22,8 +22,8 @@
   ],
   "support": {
     "email": "info@shinesoftware.com",
-    "issues": "https://shinedev@bitbucket.org/shinesoftware/issues/new",
-    "gitter": "https://shinedev@bitbucket.org/shinesoftware/base/"
+    "issues": "https://github.com/shineisp/Base/issues/new",
+    "gitter": "https://github.com/shineisp/Base.git"
   },
 
   "suggests": {
