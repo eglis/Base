@@ -34,7 +34,7 @@
   "require": {
     "php": ">=5.4",
     "rwoverdijk/assetmanager":              "*",
-    "zf-commons/zfc-user":                  "1.4.*",
+    "zf-commons/zfc-user":                  "dev-master",
     "zf-commons/zfc-admin":                 "0.1.*",
     "bjyoungblood/bjy-authorize":           "1.5.0-beta1",
     "bjyoungblood/bjy-profiler":            "1.*",
